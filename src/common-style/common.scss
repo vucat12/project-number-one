@@ -1,0 +1,46 @@
+.background {
+    img {
+        width: 100%;
+        min-height: 1px;
+        max-height: 500px;
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.achieved {
+    &-title{
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    &-result {
+        justify-content: center;
+
+        &-image{
+            background-image: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg");
+            background-size: cover;
+            min-width: 370px !important;
+            min-height: 260px !important;
+            max-width: 370px !important;
+            max-height: 260px !important;
+            margin: 0 20px;
+            position: relative;
+            .text-on-bg{
+                color: white;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                position: absolute;
+                left: 8%;
+                top: 83%;
+            }
+        }
+    }
+    
+}

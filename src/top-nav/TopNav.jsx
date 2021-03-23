@@ -1,8 +1,9 @@
 import { Menubar } from 'primereact/menubar';
-import { createBrowserHistory } from "history";
+import { useHistory,withRouter } from "react-router-dom";
 
 function TopNav() {
-   const history = createBrowserHistory()
+  const history = useHistory();
+
   const items = [
     {
        label: `Gioi thieu`,
@@ -28,21 +29,21 @@ function TopNav() {
     }
  ];
 
-const start = <img alt="logo" src="showcase/images/logo.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} height="40" className="p-mr-2"></img>;
+const start = <img alt="logo" src="showcase/images/logo.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} height="40" className="p-mr-2 cursor-pointer"  onClick={() => history.push("/")}></img>;
 const callTopNav = (event) => {
-      console.log("========", history);
    if(event.item.id === 1) {
-      window.location.href = "/home";
+      history.push("/home");
    }
 }
 
   return (
    <div>
       <div  className="card">
-      <Menubar  model={items} start={start}/>
+      <Menubar model={items} start={start}/>
       </div>
+
    </div>
   );
 }
 
-export default TopNav;
+export default withRouter(TopNav);

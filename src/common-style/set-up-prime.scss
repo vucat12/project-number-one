@@ -1,0 +1,37 @@
+.galleria-demo {
+    .custom-indicator-galleria {
+        .indicator-text {
+            color: #e9ecef;
+            cursor: pointer;
+        }
+
+        .p-highlight {
+            .indicator-text {
+                color: var(--primary-color);
+            }
+        }
+    }
+}
+
+.carousel-demo .product-item {
+    .product-item-content {
+      border: 1px solid var(--surface-d);
+      border-radius: 3px;
+      margin: .3rem;
+      text-align: center;
+      padding: 2rem 0;
+    }
+  
+    .product-image {
+      width: 30%;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    
+}
+
+.carousel-demo .custom-carousel{
+    .p-carousel-indicators{
+        display: none;
+    }
+}
