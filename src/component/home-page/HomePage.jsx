@@ -50,7 +50,7 @@ const productTemplate = (product) => {
   return (
     <div className="home-page">
       <div className="background">
-         <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="background" />
+         <img src="https://interaktivestory.batdongsan.com.vn/dien-bien-thi-truong-2018-2019/img/background.jpg" alt="background" />
       </div>
       <div className="carousel-demo pr-4 pl-4">
         <div className="card">
