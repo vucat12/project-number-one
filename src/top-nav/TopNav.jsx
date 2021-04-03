@@ -31,7 +31,7 @@ function TopNav() {
        command: (event) => callTopNav(event),
     },
     {
-       label:'Quit',
+       label:'View Chart',
        icon:'pi pi-fw pi-power-off',
        id: 5,
        command: (event) => callTopNav(event),
@@ -46,6 +46,9 @@ const callTopNav = (event) => {
          break;
       case 2: 
          history.push("/edit")
+         break;
+      case 5: 
+         history.push("/view");
          break;
    
       default:

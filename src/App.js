@@ -11,7 +11,9 @@ function App() {
     <div>
         <Router>
           <TopNav/>
-          <Routing/>
+          <div style={{paddingTop: '62px'}}>
+            <Routing/>
+          </div>
           <Footer/>
         </Router>
     </div>

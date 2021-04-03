@@ -1,7 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Carousel } from 'primereact/carousel';
+import { Dropdown } from 'primereact/dropdown';
+import { getProvincesVN } from './model/provinces.js';
+import "./HomePage.scss";
 
 function HomePage() {
+  const valueProvinces = getProvincesVN();
+  
+  useEffect(() => {
+
+  });
   const responsiveOptions = [
     {
         breakpoint: '1024px',
@@ -49,8 +57,9 @@ const productTemplate = (product) => {
 
   return (
     <div className="home-page">
-      <div className="background">
-         <img src="https://interaktivestory.batdongsan.com.vn/dien-bien-thi-truong-2018-2019/img/background.jpg" alt="background" />
+      <div className="background-home background-test">
+        <div className="search-home">
+        </div>
       </div>
       <div className="carousel-demo pr-4 pl-4">
         <div className="card">
@@ -62,14 +71,14 @@ const productTemplate = (product) => {
       <div className="achieved">
         <div className="achieved-title text-center mt-4">Du an tieu bieu</div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">
-          <div className="p-col achieved-result-image"><span className="text-on-bg">Text in background</span></div>
-          <div className="p-col achieved-result-image"><span className="text-on-bg">Text in background</span></div>
-          <div className="p-col achieved-result-image"><span className="text-on-bg">Text in background</span></div>
+          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
+          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
+          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
         </div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">
-          <div className="p-col achieved-result-image"><span className="text-on-bg">Text in background</span></div>
-          <div className="p-col achieved-result-image"><span className="text-on-bg">Text in background</span></div>
-          <div className="p-col achieved-result-image"><span className="text-on-bg">Text in background</span></div>
+          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
+          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
+          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
         </div>
 
 
