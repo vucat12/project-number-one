@@ -1,6 +1,5 @@
 import { Menubar } from 'primereact/menubar';
 import { useHistory,withRouter } from "react-router-dom";
-import { useEffect } from 'react';
 
 function TopNav() {
   const history = useHistory();
@@ -39,18 +38,26 @@ function TopNav() {
  ];
 
 const start = <img alt="logo" src="showcase/images/logo.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} height="40" className="p-mr-2 cursor-pointer"  onClick={() => history.push("/home")}></img>;
+const end = <div ><span className="pr-4 cursor-pointer" onClick={() => history.push("/login")}>Dang nhap</span> <span className="pl-4 pr-4 border-regis cursor-pointer" onClick={() => history.push("/sign-up")}>Dang ky</span></div>;
 const callTopNav = (event) => {
    switch (event.item.id) {
       case 1:
          history.push("/home");
          break;
       case 2: 
-         history.push("/edit")
+         history.push("/edit");
          break;
       case 5: 
          history.push("/view");
          break;
-   
+      
+      case 8: 
+         history.push("/login");
+         break;
+      case 9: 
+         history.push("/sign-up");
+         break;
+
       default:
          history.push("/home");
          break;
@@ -58,9 +65,9 @@ const callTopNav = (event) => {
 }
 
   return (
-   <div>
-      <div className="top-nav card">
-      <Menubar model={items} start={start}/>
+   <div className="top-nav">
+      <div className=" card">
+         <Menubar model={items} start={start} end={end} />
       </div>
 
    </div>

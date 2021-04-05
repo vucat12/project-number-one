@@ -2,4 +2,10 @@
     position: fixed;
     width: 100%;
     z-index: 1000;
+    color: red;
+    top: 0;
+    display: block;
+    .border-regis {
+        border-left: 1px solid black;
+    }
 }
