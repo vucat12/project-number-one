@@ -6,6 +6,8 @@ import LogIn from "../component/log-in/LogIn"
 
 function Routing() {
   return (
+
+
     <Switch>
           <Route path="/home">
              <HomePage /> 
@@ -18,9 +20,11 @@ function Routing() {
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit impedit amet quasi, qui placeat culpa enim voluptates, maxime corrupti modi saepe vitae assumenda odio ipsam ex sit consectetur at labore?
             </div>
           </Route>
+          <Route path="/login">
+            <LogIn/>
+          </Route>
           <Redirect to="/home" />
     </Switch>
-   
   );
 }
 
