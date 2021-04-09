@@ -3,11 +3,12 @@ import React, {useEffect} from "react";
 import './LogIn.scss';
 
 function LogIn() {
+
+
+useEffect(() => {
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
-
-useEffect(() => {
   signUpButton?.addEventListener('click', () => {
     container.classList.add("right-panel-active");
   });
@@ -19,9 +20,6 @@ useEffect(() => {
 
   return (
     <div className="login-page">
-     
-
-
      <h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
 <div className="container" id="container">
 	<div className="form-container sign-up-container">

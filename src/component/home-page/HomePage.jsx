@@ -80,8 +80,6 @@ const productTemplate = (product) => {
           <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
           <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
         </div>
-
-        
       </div>
 
     </div>
