@@ -3,3 +3,11 @@ $url: "../asset/image/";
 .background-test {
     background-image: url($url + "BackgroundTest.jpg")
 }
+
+.logo {
+    background-image: url($url + "Logo.png");
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    
+}

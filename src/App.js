@@ -18,7 +18,7 @@ function App() {
     <div>
          <Router>
             <TopNav/>
-            <div style={{margin: '62px 0'}}>
+            <div style={{margin: '68px 0'}}>
               <Routing/>
             </div>
             <Footer/>
