@@ -3,6 +3,7 @@ import {Switch,Route,Redirect } from "react-router-dom"
 import HomePage from "../component/home-page/HomePage";
 import ViewChart from "../component/view-chart/ViewChart";
 import LogIn from "../component/log-in/LogIn"
+import TableEdit from "../component/table-edit/TableEdit";
 
 function Routing() {
   return (
@@ -16,9 +17,7 @@ function Routing() {
             <ViewChart/>
           </Route>
           <Route path="/edit">
-            <div>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit impedit amet quasi, qui placeat culpa enim voluptates, maxime corrupti modi saepe vitae assumenda odio ipsam ex sit consectetur at labore?
-            </div>
+            <TableEdit/>
           </Route>
           <Route path="/login">
             <LogIn/>
