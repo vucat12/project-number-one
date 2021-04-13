@@ -17,11 +17,11 @@ function App() {
   return (
     <div>
          <Router>
-            <TopNav/>
+            {/* <TopNav/> */}
             <div style={{margin: '68px 0'}}>
               <Routing/>
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </Router>
     </div>
   );
