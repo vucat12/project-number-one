@@ -1,15 +1,27 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Carousel } from 'primereact/carousel';
-import { Dropdown } from 'primereact/dropdown';
 import { getProvincesVN } from './model/provinces.js';
 import "./HomePage.scss";
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
+
 
 function HomePage() {
   const valueProvinces = getProvincesVN();
-  
-  useEffect(() => {
 
-  });
+const [value, setValue] = useState({valueInput: '', valueSelect: ''})
+
+const options = [
+  {value: 'one', label: 'one'},
+  {value: 'two', label: 'two'}
+];
+
+
+  
+
   const responsiveOptions = [
     {
         breakpoint: '1024px',
@@ -55,10 +67,28 @@ const productTemplate = (product) => {
   );
 }
 
+const setValueInput = (e) => {
+  setValue({...value, valueInput: e.target.value})
+}
+
+const setValueSelect = (e) => {
+  setValue({...value, valueSelect: e.value})
+}
+
   return (
     <div className="home-page">
       <div className="background-home background-test">
         <div className="search-home">
+
+
+
+          <Dropdown options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />;
+          <InputText className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Search" />
+          <Button className="button-noFocus" label="Click" icon="pi pi-search"  
+          iconPos="right" onClick={() => console.log(value)}/>
+
+
+
         </div>
       </div>
       <div className="carousel-demo pr-4 pl-4">

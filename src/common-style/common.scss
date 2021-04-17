@@ -35,3 +35,13 @@
         }
     }
 }
+
+.input-noFocus:enabled:focus {
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.button-noFocus:focus {
+    box-shadow: none;
+}
