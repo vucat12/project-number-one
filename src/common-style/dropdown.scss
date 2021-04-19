@@ -1,0 +1,20 @@
+.Dropdown {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    top: -1px;
+    &-control {
+        border-radius: 5px;
+        width: 150px;
+    }
+    &-placeholder {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        flex: 1 1 auto;
+        text-overflow: ellipsis;
+        cursor: pointer;
+        line-height: 20px;
+    }
+}

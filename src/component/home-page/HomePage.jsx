@@ -9,6 +9,7 @@ import 'react-dropdown/style.css';
 
 
 
+
 function HomePage() {
   const valueProvinces = getProvincesVN();
 
@@ -81,11 +82,18 @@ const setValueSelect = (e) => {
         <div className="search-home">
 
 
-
-          <Dropdown options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />;
+<div className="search-home-head ">
+          <Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
           <InputText className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Search" />
           <Button className="button-noFocus" label="Click" icon="pi pi-search"  
           iconPos="right" onClick={() => console.log(value)}/>
+</div>
+<div className="search-home-under mt-2">
+<Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
+<Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
+<Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
+</div>
+        
 
 
 
