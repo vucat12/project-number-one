@@ -6,22 +6,27 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-
-
+import { getDistricts } from "pc-vn";
+const listProvinces = getProvincesVN();
+const listDistrict = getDistricts();
 
 
 function HomePage() {
-  const valueProvinces = getProvincesVN();
+const [value, setValue] = useState({valueInput: '', valueSelect: ''});
+const [valueProvinces, setProvince] = useState('');
+const [valueDistrict, setDistrict] = useState('');
 
-const [value, setValue] = useState({valueInput: '', valueSelect: ''})
+const [listOptionsDistrict, setOptionsDistrict] = useState('')
+
+useEffect(() => {
+  setDistrict('');
+  setOptionsDistrict(listDistrict.filter(el => el.province_value === valueProvinces));
+}, [valueProvinces])
 
 const options = [
   {value: 'one', label: 'one'},
   {value: 'two', label: 'two'}
 ];
-
-
-  
 
   const responsiveOptions = [
     {
@@ -76,26 +81,25 @@ const setValueSelect = (e) => {
   setValue({...value, valueSelect: e.value})
 }
 
+const ValueSearching = () => {
+  console.log("======", valueProvinces, valueDistrict)
+}
+
   return (
     <div className="home-page">
       <div className="background-home background-test">
         <div className="search-home">
-
-
-<div className="search-home-head ">
-          <Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
-          <InputText className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Search" />
-          <Button className="button-noFocus" label="Click" icon="pi pi-search"  
-          iconPos="right" onClick={() => console.log(value)}/>
-</div>
-<div className="search-home-under mt-2">
-<Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
-<Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
-<Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
-</div>
-        
-
-
+        <div className="search-home-head ">
+                  <Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Loại nhà đất" />
+                  <InputText className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Tìm kiếm địa điểm và khu vực" />
+                  <Button className="button-noFocus" label="Click" icon="pi pi-search"  
+                  iconPos="right" onClick={ValueSearching}/>
+        </div>
+        <div className="search-home-under mt-2">
+        <Dropdown className="Dropdown" options={listProvinces} onChange={(e) => setProvince(e.value)} value={valueProvinces} placeholder="Tỉnh trên toàn quốc" />
+        <Dropdown className="Dropdown" options={listOptionsDistrict} onChange={(e) => setDistrict(e.value)} value={valueDistrict} placeholder="Quận/ Huyện" />
+        <Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
+        </div>
 
         </div>
       </div>

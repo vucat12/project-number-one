@@ -13,12 +13,6 @@ import './redux/store';
 
 
 function App() {
-  useEffect(() =>
-  console.log("=========")
-  )
-
-  
-
   const currentPath = window.location.pathname;
 
   return (
