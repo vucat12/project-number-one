@@ -6,11 +6,18 @@ import Routing from "./routing/Routing";
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './common-style/index.scss'
 import LogIn from './component/log-in/LogIn'
+import { createStore, applyMiddleware } from 'redux';
+import './redux/store';
+
+// const store = createStore('counterReducer')
+
 
 function App() {
   useEffect(() =>
-  console.log("=========", currentPath)
+  console.log("=========")
   )
+
+  
 
   const currentPath = window.location.pathname;
 
