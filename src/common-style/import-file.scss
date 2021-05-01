@@ -9,5 +9,10 @@ $url: "../asset/image/";
     background-size: cover;
     height: 50px;
     width: 50px;
-    
+}
+
+.highlight-project {
+    &-one {
+      background-image: url($url + "highlight-project-1.jpg");
+    }
 }

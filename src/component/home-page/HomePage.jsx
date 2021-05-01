@@ -125,8 +125,8 @@ const ValueSearching = () => {
       <div className="achieved">
         <div className="achieved-title text-center mt-4">Du an tieu bieu</div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">
-          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
-          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
+          <div className="p-col achieved-result-image highlight-project-one"><span className="text-on-bg">Tecco Elite City</span></div>
+          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Vinhomes</span></div>
           <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
         </div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">

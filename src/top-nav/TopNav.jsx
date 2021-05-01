@@ -5,32 +5,32 @@ function TopNav() {
 
   const items = [
     {
-       label: `Gioi thieu`,
-       icon:'pi pi-fw pi-file',
+       label: `Giới thiệu`,
+       icon:'pi pi-fw pi-home',
        command: (event) => callTopNav(event),
        id: 1,
     },
     {
-       label:'Edit',
-       icon:'pi pi-fw pi-pencil',
+       label:'Tin tức',
+       icon:'pi pi-fw pi-folder',
        id: 2,
        command: (event) => callTopNav(event),
     },
     {
-       label:'Users',
-       icon:'pi pi-fw pi-user',
+       label:'Dự án',
+       icon:'pi pi-fw pi-flag',
        id: 3,
        command: (event) => callTopNav(event),
     },
     {
-       label:'Events',
+       label:'Sự kiện',
        icon:'pi pi-fw pi-calendar',
        id: 4,
        command: (event) => callTopNav(event),
     },
     {
-       label:'View Chart',
-       icon:'pi pi-fw pi-power-off',
+       label:'Thông tin biểu đồ',
+       icon:'pi pi-fw pi-chart-bar',
        id: 5,
        command: (event) => callTopNav(event),
     }
@@ -38,7 +38,7 @@ function TopNav() {
 
  const start = <div className="logo pl-4 pr-4 cursor-pointer"  onClick={() => history.push("/home")}></div>
 // const start = <img alt="logo" src="showcase/images/logo.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} height="40" className="p-mr-2 cursor-pointer"  onClick={() => history.push("/home")}></img>;
-const end = <div > <i className="pi pi-fw pi-sign-in"></i> <span className="pr-4 cursor-pointer pl-1" onClick={() => history.push("/login")}>Dang nhap | Dang ky</span> </div>;
+const end = <div > <i className="pi pi-fw pi-sign-in"></i> <span className="pr-4 cursor-pointer pl-1" onClick={() => history.push("/login")}>Đăng nhập | Đăng ký</span> </div>;
 const callTopNav = (event) => {
    switch (event.item.id) {
       case 1:
