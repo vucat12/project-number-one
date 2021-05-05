@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Switch,Route,Redirect } from "react-router-dom"
 import HomePage from "../component/home-page/HomePage";
 import ViewChart from "../component/view-chart/ViewChart";
 import LogIn from "../component/log-in/LogIn"
 import ViewPost from "../component/home-page/ViewPost/ViewPost";
+import { useLocation } from "react-router";
 
 function Routing() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
 
 
@@ -17,8 +23,8 @@ function Routing() {
             <ViewChart/>
           </Route>
           <Route path="/edit">
-            <div>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit impedit amet quasi, qui placeat culpa enim voluptates, maxime corrupti modi saepe vitae assumenda odio ipsam ex sit consectetur at labore?
+            <div style={{textAlign: 'center', padding: '32px', textTransform: 'uppercase', color: 'red'}}>
+             <h2>It will be coming soon.</h2> 
             </div>
           </Route>
           <Route path="/login">

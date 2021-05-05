@@ -15,6 +15,8 @@ import './redux/store';
 function App() {
   const currentPath = window.location.pathname;
 
+
+
   return (
     <div>
          <Router>
