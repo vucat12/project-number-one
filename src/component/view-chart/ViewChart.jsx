@@ -1,22 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart } from 'primereact/chart';
 import './ViewChart.scss';
+import ProductService from "../services/ProductServices";
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from "primereact/button";
+import Dropdown from 'react-dropdown';
+import {Price} from '../init-default/price';
+import { Area, areaSelected } from "../init-default/area";
+
+const productService = new ProductService();
+const dataPrice = Price;
 
 function ViewChart() {
-    const chartData = {
-        labels: ['Khu vực miền Nam', 'Khu vực miền Trung', 'Khu vực miền Bắc'],
+    const [products, setProducts] = useState();
+    const [searchPrice, setSearch] = useState({priceValue: '', idPrice: ''});
+    const [dataCircle, setDataCircle] = useState([]);
+    const [searchArea, setSearchArea] = useState({areaValue: '', idArea: ''});
+
+    useEffect(() => {
+        getHouse();
+        getRatePercent();
+    }, []);
+
+    const getHouse = (idPrice, area) => {
+        const data = {
+            data: idPrice,
+            area: area,
+        }
+        productService.getLowHouse(data).then((data) => {
+            setProducts(data);
+        });
+    }
+
+    const getRatePercent = async() => {
+        let response;
+        await productService.getRatePercent().then((res) => {
+            response = res.map(el => el);
+        });
+        setDataCircle(response);
+    }
+
+    let chartData = {
+        labels: Area,
         datasets: [
             {
-                data: [300, 50, 100],
+                data: dataCircle,
                 backgroundColor: [
                     "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
+                    "#36A2EE",
+                    "#FFCCCC",
+                    "#FF63FF",
+                    "#36ACCC",
+                    "#FFCEAA",
+                    "#FF6312",
+                    "#36A232",
+                    "#FFCEEE",
+                    "#FF6344",
+                    "#36A123",
+                    "#FFCE56",
                 ],
                 hoverBackgroundColor: [
                     "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
+                    "#36A2EE",
+                    "#FFCCCC",
+                    "#FF63FF",
+                    "#36ACCC",
+                    "#FFCEAA",
+                    "#FF6312",
+                    "#36A232",
+                    "#FFCEEE",
+                    "#FF6344",
+                    "#36A123",
+                    "#FFCE56",
                 ]
             }]
     };
@@ -29,10 +85,8 @@ function ViewChart() {
         }
     };
 
-
-
     const basicData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: Area,
         datasets: [
             {
                 label: 'Chi tiết miền Nam',
@@ -70,20 +124,60 @@ function ViewChart() {
             }]
         }
     };
+    const imageBodyTemplate = (rowData) => {
+        return <img src={rowData.imageInf} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />;
+    }
 
+    const confirm = (event) => {
+        getHouse(searchPrice.idPrice, searchArea.idArea);
+    };
 
+    const setPriceValue = (e) => {
+        // productService.getLowHouse(e.value).then((data) => {
+        //     setProducts(data);
+        // });
+        setSearch({priceValue: e.label, idPrice: e.value})
+    }
+
+    const setAreaValue = (e) => {
+        setSearchArea({areaValue: e.label, idArea: e.value})
+    }
+    
   return (
       <div className="view-chart">
+        <div className="search">
+            <Dropdown className="Dropdown" options={dataPrice} onChange={(e) => setPriceValue(e)} value={searchPrice.priceValue} placeholder="Giá nhà" />
+            <Dropdown className="Dropdown" options={areaSelected} onChange={(e) => setAreaValue(e)} value={searchArea.areaValue}  placeholder="Diện tích" />
+            <Button
+            onClick={() => confirm()}
+            icon="pi pi-search"
+            label="Search"
+            className="p-mr-2 ml-3"
+            ></Button>
+            <div className="result-found">
+                <span style={{fontWeight: 'bold'}}>Tổng kết quả: {products?.length}</span>
+            </div>
+        </div>
+          <div className="card table-data">
+            <DataTable value={products} paginator rows={10}>
+                <Column body={imageBodyTemplate} header="Image"></Column>
+                <Column field="titleInf" header="Tiêu đề"></Column>
+                <Column field="priceInf" header="Giá"></Column>
+                <Column field="descriptionInf" header="Mô tả"></Column>
+                <Column field="areaInf" header="Diên tích"></Column>
+                <Column field="addressInf" header="Địa chỉ"></Column>
+            </DataTable>
+            </div>
         <div className="view-chart-title">
             Thông tin biểu đồ về thị trường bất động sản Việt Nam
         </div>
         <div className="card">
-                <h5>Biểu đồ tròn</h5>
-                <Chart width={519} height={600} type="pie" data={chartData} options={lightOptions} />
+                <h5>Biểu đồ tròn diện tích đất cần bán (m2)</h5>
+                <Chart width="519px" height="600px" type="pie" data={chartData} options={lightOptions} />
         </div>
         <div className="card" style={{paddingTop: '32px'}}>
             <h5>Biểu đồ ngang</h5>
-            <Chart width={1000} height={600} type="horizontalBar" data={basicData} options={basicOptions} />
+            <Chart width="1000px" height="600px" type="horizontalBar" data={basicData} options={basicOptions} />
         </div>
       </div>
  

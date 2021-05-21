@@ -33,6 +33,24 @@ function TopNav() {
        icon:'pi pi-fw pi-chart-bar',
        id: 5,
        command: (event) => callTopNav(event),
+       items: [
+         {
+            label:'Left',
+            icon:'pi pi-fw pi-align-left'
+         },
+         {
+            label:'Right',
+            icon:'pi pi-fw pi-align-right'
+         },
+         {
+            label:'Center',
+            icon:'pi pi-fw pi-align-center'
+         },
+         {
+            label:'Justify',
+            icon:'pi pi-fw pi-align-justify'
+         },
+       ]
     }
  ];
 

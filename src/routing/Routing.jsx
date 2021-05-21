@@ -13,8 +13,6 @@ function Routing() {
     window.scrollTo(0, 0);
   }, [location]);
   return (
-
-
     <Switch>
           <Route path="/home">
              <HomePage /> 

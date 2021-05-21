@@ -1,0 +1,25 @@
+.table-data {
+    margin: 5%;
+    .p-datatable-thead {
+        tr {
+            font-size: 14px;
+            th {
+                text-align: center;
+                width: 10%;
+                padding: 12px;
+            }
+        }
+    }
+    .p-datatable-tbody {
+        tr {
+            font-size: 12px;
+            td {
+                text-align: center;
+                img {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+        }
+    }
+}

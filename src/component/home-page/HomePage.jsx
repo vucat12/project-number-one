@@ -5,12 +5,13 @@ import "./HomePage.scss";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 import { getDistricts } from "pc-vn";
 import { useHistory } from "react-router";
+import { dataType } from "./model/ground.js";
 
 const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
+const listTypeGround = dataType;
 let products =  [
   {"id": "1000","code": "f230fh0g3","name": "Thủy Nguyên","Cơn sốt nóng bỏng": "Product Description","image": "bamboo-watch.jpg","price": "2 tỷ","category": "Accessories","quantity": 24,"inventoryStatus": "Cơn sốt nóng bỏng","rating": 5},
   {"id": "1001","code": "nvklal433","name": "Black Watch","description": "Product Description","image": "black-watch.jpg","price": 72,"category": "Accessories","quantity": 61,"inventoryStatus": "INSTOCK","rating": 4},
@@ -31,6 +32,7 @@ function HomePage() {
 const [value, setValue] = useState({valueInput: '', valueSelect: ''});
 const [valueProvinces, setProvince] = useState('');
 const [valueDistrict, setDistrict] = useState('');
+const [valueType, setType] = useState('');
 
 const [listOptionsDistrict, setOptionsDistrict] = useState('');
 const routing = useHistory();
@@ -102,7 +104,7 @@ const ValueSearching = () => {
       <div className="background-home background-test">
         <div className="search-home">
         <div className="search-home-head ">
-                  <Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Loại nhà đất" />
+                  <Dropdown className="Dropdown" options={listTypeGround} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Loại nhà đất" />
                   <InputText className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Tìm kiếm địa điểm và khu vực" />
                   <Button className="button-noFocus" label="Click" icon="pi pi-search"  
                   iconPos="right" onClick={ValueSearching}/>
@@ -110,7 +112,7 @@ const ValueSearching = () => {
         <div className="search-home-under mt-2">
         <Dropdown className="Dropdown" options={listProvinces} onChange={(e) => setProvince(e.value)} value={valueProvinces} placeholder="Tỉnh trên toàn quốc" />
         <Dropdown className="Dropdown" options={listOptionsDistrict} onChange={(e) => setDistrict(e.value)} value={valueDistrict} placeholder="Quận/ Huyện" />
-        <Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Tìm nhà đất" />
+        <Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Diện tích" />
         </div>
 
         </div>

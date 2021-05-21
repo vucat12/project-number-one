@@ -9,4 +9,15 @@
         text-align: center;
         padding: 32px 0;
     }
+    .search {
+        padding: 20px;
+        text-align: right;
+        .Dropdown {
+            height: 40px;
+        }
+        .result-found {
+            text-align: center;
+        }
+    }
+   
 }
