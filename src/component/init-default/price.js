@@ -1,5 +1,10 @@
 export const Price = [
     {
+        value: 0,
+        label: "All",
+        unit: 'Price',
+    },
+    {
         value: 1,
         label: "0-1 tỷ",
         unit: 'Price',

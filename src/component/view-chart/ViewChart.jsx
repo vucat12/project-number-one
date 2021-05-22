@@ -27,11 +27,10 @@ function ViewChart() {
     }, []);
 
     const getHouse = (idPrice, area, province) => {
-        if(province==='All') province = undefined;
         const data = {
             data: idPrice,
             area: area,
-            province: province,
+            province: province!=='All' ? province : undefined,
         }
         productService.getLowHouse(data).then((data) => {
             setProducts(data);

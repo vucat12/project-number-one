@@ -2,6 +2,10 @@ export const Area = ['30-50', '50-70', '70-100', '100-150', '150-200', '250-300'
 
 export const areaSelected = [
     {
+      value: 0,
+      label: 'All',
+    },
+    {
       value: '30-50',
       label: '30-50m2',
     },
