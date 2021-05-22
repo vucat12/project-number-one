@@ -31,12 +31,12 @@ function TopNav() {
     {
        label:'Thông tin biểu đồ',
        icon:'pi pi-fw pi-chart-bar',
-       id: 5,
-       command: (event) => callTopNav(event),
        items: [
          {
-            label:'Left',
-            icon:'pi pi-fw pi-align-left'
+            label:'Biểu đồ cần bán',
+            icon:'pi pi-fw pi-align-left',
+            id: 5,
+            command: (event) => callTopNav(event),
          },
          {
             label:'Right',

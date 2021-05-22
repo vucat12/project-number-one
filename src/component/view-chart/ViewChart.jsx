@@ -8,7 +8,9 @@ import { Button } from "primereact/button";
 import Dropdown from 'react-dropdown';
 import {Price} from '../init-default/price';
 import { Area, areaSelected } from "../init-default/area";
+import { getProvincesVN } from "../home-page/model/provinces";
 
+const listProvinces = getProvincesVN();
 const productService = new ProductService();
 const dataPrice = Price;
 
@@ -17,16 +19,19 @@ function ViewChart() {
     const [searchPrice, setSearch] = useState({priceValue: '', idPrice: ''});
     const [dataCircle, setDataCircle] = useState([]);
     const [searchArea, setSearchArea] = useState({areaValue: '', idArea: ''});
+    const [searchProvince, setSearchProvince] = useState('');
 
     useEffect(() => {
         getHouse();
         getRatePercent();
     }, []);
 
-    const getHouse = (idPrice, area) => {
+    const getHouse = (idPrice, area, province) => {
+        if(province==='All') province = undefined;
         const data = {
             data: idPrice,
             area: area,
+            province: province,
         }
         productService.getLowHouse(data).then((data) => {
             setProducts(data);
@@ -129,7 +134,8 @@ function ViewChart() {
     }
 
     const confirm = (event) => {
-        getHouse(searchPrice.idPrice, searchArea.idArea);
+        console.log("=====", searchProvince);
+        getHouse(searchPrice.idPrice, searchArea.idArea, searchProvince);
     };
 
     const setPriceValue = (e) => {
@@ -146,6 +152,7 @@ function ViewChart() {
   return (
       <div className="view-chart">
         <div className="search">
+            <Dropdown className="Dropdown Dropdown-provinces" options={listProvinces} onChange={(e) => setSearchProvince(e.label)} value={searchProvince} placeholder="Tỉnh" />
             <Dropdown className="Dropdown" options={dataPrice} onChange={(e) => setPriceValue(e)} value={searchPrice.priceValue} placeholder="Giá nhà" />
             <Dropdown className="Dropdown" options={areaSelected} onChange={(e) => setAreaValue(e)} value={searchArea.areaValue}  placeholder="Diện tích" />
             <Button

@@ -4,6 +4,7 @@ import { environment } from './environment';
 export default class ProductService {
     
     getLowHouse(data) {
+      data = Object.fromEntries(Object.entries(data).filter(([_, option]) => !!option));
       return axios({
           headers: { 'Content-Type': 'application/json'},
           method: 'get',
