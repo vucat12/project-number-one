@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from 'primereact/chart';
 import './ViewChart.scss';
-import ProductService from "../services/ProductServices";
+import { ProductService } from "../services/sellerServices";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from "primereact/button";
@@ -11,15 +11,16 @@ import { Area, areaSelected } from "../init-default/area";
 import { getProvincesVN } from "../home-page/model/provinces";
 
 const listProvinces = getProvincesVN();
-const productService = new ProductService();
+const productService = ProductService;
 const dataPrice = Price;
 
 function ViewChart() {
     const [products, setProducts] = useState();
     const [searchPrice, setSearch] = useState({priceValue: '', idPrice: ''});
-    const [dataCircle, setDataCircle] = useState([]);
     const [searchArea, setSearchArea] = useState({areaValue: '', idArea: ''});
     const [searchProvince, setSearchProvince] = useState('');
+    const [dataCircle, setDataCircle] = useState([]);
+    const [dataLine, setDataLine] = useState([]);
 
     useEffect(() => {
         getHouse();
@@ -38,11 +39,13 @@ function ViewChart() {
     }
 
     const getRatePercent = async() => {
-        let response;
+        let response = {dataCircle: [], dataLine: []};
         await productService.getRatePercent().then((res) => {
-            response = res.map(el => el);
+            response.dataLine = res.sumHouses.map(el => el);
+            response.dataCircle = res.dataPercent.map(el => el);
         });
-        setDataCircle(response);
+        setDataCircle(response.dataCircle);
+        setDataLine(response.dataLine)
     }
 
     let chartData = {
@@ -93,19 +96,9 @@ function ViewChart() {
         labels: Area,
         datasets: [
             {
-                label: 'Chi tiết miền Nam',
+                label: 'Số lượng nhà',
                 backgroundColor: '#FF6384',
-                data: [65, 59, 80, 81, 56, 55, 40]
-            },
-            {
-                label: 'Chi tiết miền Trung',
-                backgroundColor: '#36A2EB',
-                data: [28, 48, 40, 19, 86, 27, 90]
-            },
-            {
-                label: 'Chi tiết miền Bắc',
-                backgroundColor: '#FFCE56',
-                data: [30, 40, 70, 80, 20, 70, 40]
+                data: dataLine,
             },
         ]
     };
@@ -133,7 +126,6 @@ function ViewChart() {
     }
 
     const confirm = (event) => {
-        console.log("=====", searchProvince);
         getHouse(searchPrice.idPrice, searchArea.idArea, searchProvince);
     };
 
@@ -178,11 +170,11 @@ function ViewChart() {
             Thông tin biểu đồ về thị trường bất động sản Việt Nam
         </div>
         <div className="card">
-                <h5>Biểu đồ tròn diện tích đất cần bán (m2)</h5>
+                <h5>Biểu đồ tròn diện tích đất cần bán (% m2)</h5>
                 <Chart width="519px" height="600px" type="pie" data={chartData} options={lightOptions} />
         </div>
         <div className="card" style={{paddingTop: '32px'}}>
-            <h5>Biểu đồ ngang</h5>
+            <h5>Biểu đồ ngang dữ liệu cụ thể (Toàn quốc)</h5>
             <Chart width="1000px" height="600px" type="horizontalBar" data={basicData} options={basicOptions} />
         </div>
       </div>

@@ -39,15 +39,17 @@ function TopNav() {
             command: (event) => callTopNav(event),
          },
          {
-            label:'Right',
-            icon:'pi pi-fw pi-align-right'
+            label:'Biểu đồ cần mua',
+            icon:'pi pi-fw pi-align-right',
+            id: 6,
+            command: (event) => callTopNav(event),
          },
          {
-            label:'Center',
+            label:'Biểu đồ cần thuê',
             icon:'pi pi-fw pi-align-center'
          },
          {
-            label:'Justify',
+            label:'Biểu đồ cho thuê',
             icon:'pi pi-fw pi-align-justify'
          },
        ]
