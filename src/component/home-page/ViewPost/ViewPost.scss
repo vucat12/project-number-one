@@ -2,13 +2,10 @@
     padding: 2% 10%;
     &-image {
         background-size: cover;
-        width: 100%;
-        height: 500px;
         text-align: center;
         position: relative;
         &_description {
             position: absolute;
-            top: 505px;
             color: #8f8f8f;
         }
     }
@@ -35,5 +32,21 @@
         text-align: right;
         padding-top: 16px;
         font-weight: bold;
+    }
+    &-carousel {
+        .product-item {
+            padding: 10% 0;
+            &-content {
+                margin: 0 5%;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .p-carousel-indicators{
+            display: none !important;
+        }
     }
 }

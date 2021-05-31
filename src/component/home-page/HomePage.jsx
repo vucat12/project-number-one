@@ -25,6 +25,23 @@ let products =  [
   {"id": "1009","code": "cm230f032","name": "Gaming Set","description": "Product Description","image": "gaming-set.jpg","price": 299,"category": "Electronics","quantity": 63,"inventoryStatus": "INSTOCK","rating": 3}
 ]
 
+const responsiveOptions = [
+  {
+      breakpoint: '1024px',
+      numVisible: 3,
+      numScroll: 3
+  },
+  {
+      breakpoint: '600px',
+      numVisible: 2,
+      numScroll: 2
+  },
+  {
+      breakpoint: '480px',
+      numVisible: 1,
+      numScroll: 1
+  }
+];
 
 function HomePage() {
 
@@ -119,7 +136,7 @@ const ValueSearching = () => {
       </div>
       <div className="carousel-demo pr-4 pl-4">
         <div className="card">
-            <Carousel value={products} numVisible={4} numScroll={1} responsiveOptions={responsiveOptions} className="custom-carousel" circular
+            <Carousel responsiveOptions={responsiveOptions} value={products} numVisible={4} numScroll={1} responsiveOptions={responsiveOptions} className="custom-carousel" circular
                 autoplayInterval={3000} itemTemplate={productTemplate} />
         </div>
       </div>

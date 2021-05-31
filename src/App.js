@@ -3,7 +3,7 @@ import './App.css';
 import TopNav from './top-nav/TopNav';
 import Footer from './footer/Footer';
 import Routing from "./routing/Routing";
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {BrowserRouter as Router } from 'react-router-dom';
 import './common-style/index.scss'
 import LogIn from './component/log-in/LogIn'
 import { createStore, applyMiddleware } from 'redux';

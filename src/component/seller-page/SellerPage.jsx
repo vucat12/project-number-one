@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from 'primereact/chart';
-import './ViewChart.scss';
-import { ProductService } from "../services/sellerServices";
+import './SellerPage.scss';
+import { SellerService } from "../services/sellerServices";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from "primereact/button";
@@ -9,18 +9,23 @@ import Dropdown from 'react-dropdown';
 import {Price} from '../init-default/price';
 import { Area, areaSelected } from "../init-default/area";
 import { getProvincesVN } from "../home-page/model/provinces";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 const listProvinces = getProvincesVN();
-const productService = ProductService;
+const productService = SellerService;
 const dataPrice = Price;
 
-function ViewChart() {
+function SellerPage() {
     const [products, setProducts] = useState();
     const [searchPrice, setSearch] = useState({priceValue: '', idPrice: ''});
     const [searchArea, setSearchArea] = useState({areaValue: '', idArea: ''});
     const [searchProvince, setSearchProvince] = useState('');
     const [dataCircle, setDataCircle] = useState([]);
     const [dataLine, setDataLine] = useState([]);
+
+    const history = useHistory();
+
 
     useEffect(() => {
         getHouse();
@@ -139,6 +144,11 @@ function ViewChart() {
     const setAreaValue = (e) => {
         setSearchArea({areaValue: e.label, idArea: e.value})
     }
+
+    const viewPostDetail = async (e) => {
+        let data = await productService.getPostDetail(e.data.linkPage).then((res) => res.data[0])
+        history.push("/view-post",{data: data})
+    }
     
   return (
       <div className="view-chart">
@@ -157,7 +167,7 @@ function ViewChart() {
             </div>
         </div>
           <div className="card table-data">
-            <DataTable value={products} paginator rows={10}>
+            <DataTable value={products} paginator rows={10} onRowClick={(e) => viewPostDetail(e)}>
                 <Column body={imageBodyTemplate} header="Image"></Column>
                 <Column field="titleInf" header="Tiêu đề"></Column>
                 <Column field="priceInf" header="Giá"></Column>
@@ -182,4 +192,4 @@ function ViewChart() {
   );
 }
 
-export default ViewChart;
+export default SellerPage;

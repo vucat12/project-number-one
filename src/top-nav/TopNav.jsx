@@ -68,7 +68,10 @@ const callTopNav = (event) => {
          history.push("/edit");
          break;
       case 5: 
-         history.push("/view");
+         history.push("/seller-page");
+         break;
+      case 6:
+         history.push("/buyer-page")
          break;
       
       case 8: 
