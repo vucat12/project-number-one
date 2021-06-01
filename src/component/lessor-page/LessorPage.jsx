@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from 'primereact/chart';
-import './BuyerPage.scss';
-import { BuyerService } from "../services/buyerServices";
+import './LessorPage.scss';
+import { LessorService } from "../services/lessorServices";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from "primereact/button";
@@ -13,10 +13,10 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
 const listProvinces = getProvincesVN();
-const productService = BuyerService;
+const productService = LessorService;
 const dataPrice = Price;
 
-function BuyerPage() {
+function LessorPage() {
     const [products, setProducts] = useState();
     const [searchPrice, setSearch] = useState({priceValue: '', idPrice: ''});
     const [searchArea, setSearchArea] = useState({areaValue: '', idArea: ''});
@@ -25,6 +25,7 @@ function BuyerPage() {
     const [dataLine, setDataLine] = useState([]);
 
     const history = useHistory();
+
 
     useEffect(() => {
         getHouse();
@@ -143,12 +144,12 @@ function BuyerPage() {
     const setAreaValue = (e) => {
         setSearchArea({areaValue: e.label, idArea: e.value})
     }
-    
+
     const viewPostDetail = async (e) => {
         let data = await productService.getPostDetail(e.data.linkPage).then((res) => res.data[0])
         history.push("/view-post",{data: data})
     }
-
+    
   return (
       <div className="view-chart">
         <div className="search">
@@ -191,4 +192,4 @@ function BuyerPage() {
   );
 }
 
-export default BuyerPage;
+export default LessorPage;

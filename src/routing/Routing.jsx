@@ -6,6 +6,7 @@ import LogIn from "../component/log-in/LogIn"
 import ViewPost from "../component/home-page/ViewPost/ViewPost";
 import { useLocation } from "react-router";
 import BuyerPage from "../component/buyer-page/BuyerPage";
+import LessorPage from "../component/lessor-page/LessorPage";
 
 function Routing() {
   const location = useLocation();
@@ -23,6 +24,9 @@ function Routing() {
           </Route>
           <Route path="/buyer-page">
             <BuyerPage/>
+          </Route>
+          <Route path="/lessor-page">
+            <LessorPage/>
           </Route>
           <Route path="/edit">
             <div style={{textAlign: 'center', padding: '32px', textTransform: 'uppercase', color: 'red'}}>

@@ -50,7 +50,9 @@ function TopNav() {
          },
          {
             label:'Biểu đồ cho thuê',
-            icon:'pi pi-fw pi-align-justify'
+            icon:'pi pi-fw pi-align-justify',
+            id: 7,
+            command: (event) => callTopNav(event),
          },
        ]
     }
@@ -71,9 +73,11 @@ const callTopNav = (event) => {
          history.push("/seller-page");
          break;
       case 6:
-         history.push("/buyer-page")
+         history.push("/buyer-page");
          break;
-      
+      case 7:
+         history.push("/lessor-page");
+         break;
       case 8: 
          history.push("/login");
          break;
