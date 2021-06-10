@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from 'primereact/chart';
-import './LessorPage.scss';
-import { LessorService } from "../../services/lessorServices";
+import './TenantPage.scss';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from "primereact/button";
@@ -10,12 +9,13 @@ import {Price} from '../init-default/price';
 import { Area, areaSelected } from "../init-default/area";
 import { getProvincesVN } from "../home-page/model/provinces";
 import { useHistory } from "react-router";
+import { TenantService } from "../../services/tenantServices";
 
 const listProvinces = getProvincesVN();
-const productService = LessorService;
+const productService = TenantService;
 const dataPrice = Price;
 
-function LessorPage() {
+function TenantPage() {
     const [products, setProducts] = useState();
     const [searchPrice, setSearch] = useState({priceValue: '', idPrice: ''});
     const [searchArea, setSearchArea] = useState({areaValue: '', idArea: ''});
@@ -191,4 +191,4 @@ function LessorPage() {
   );
 }
 
-export default LessorPage;
+export default TenantPage;

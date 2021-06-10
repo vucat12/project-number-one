@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from 'primereact/chart';
 import './BuyerPage.scss';
-import { BuyerService } from "../services/buyerServices";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from "primereact/button";
@@ -9,8 +8,8 @@ import Dropdown from 'react-dropdown';
 import {Price} from '../init-default/price';
 import { Area, areaSelected } from "../init-default/area";
 import { getProvincesVN } from "../home-page/model/provinces";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { BuyerService } from "../../services/buyerServices";
 
 const listProvinces = getProvincesVN();
 const productService = BuyerService;

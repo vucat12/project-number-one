@@ -1,5 +1,7 @@
 import { Menubar } from 'primereact/menubar';
 import { useHistory,withRouter } from "react-router-dom";
+import './TopNav.scss'
+
 function TopNav() {
   const history = useHistory();
 
@@ -45,20 +47,22 @@ function TopNav() {
             command: (event) => callTopNav(event),
          },
          {
-            label:'Biểu đồ cần thuê',
-            icon:'pi pi-fw pi-align-center'
-         },
-         {
             label:'Biểu đồ cho thuê',
             icon:'pi pi-fw pi-align-justify',
             id: 7,
+            command: (event) => callTopNav(event),
+         },
+         {
+            label:'Biểu đồ cần thuê',
+            icon:'pi pi-fw pi-align-center',
+            id: 8,
             command: (event) => callTopNav(event),
          },
        ]
     }
  ];
 
- const start = <div className="logo pl-4 pr-4 cursor-pointer"  onClick={() => history.push("/home")}></div>
+ const start = <div className="logo pl-4 pr-4 cursor-pointer mr-4"  onClick={() => history.push("/home")}></div>
 // const start = <img alt="logo" src="showcase/images/logo.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} height="40" className="p-mr-2 cursor-pointer"  onClick={() => history.push("/home")}></img>;
 const end = <div > <i className="pi pi-fw pi-sign-in"></i> <span className="pr-4 cursor-pointer pl-1" onClick={() => history.push("/login")}>Đăng nhập | Đăng ký</span> </div>;
 const callTopNav = (event) => {
@@ -79,7 +83,7 @@ const callTopNav = (event) => {
          history.push("/lessor-page");
          break;
       case 8: 
-         history.push("/login");
+         history.push("/tenant-page");
          break;
       case 9: 
          history.push("/sign-up");
