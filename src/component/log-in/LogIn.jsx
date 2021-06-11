@@ -1,22 +1,38 @@
-import { withRouter } from "react-router-dom";
-import React, {useEffect} from "react";
+import { useHistory, withRouter } from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import './LogIn.scss';
+import { authenServices } from "../../services/authenServices";
 
 function LogIn() {
 
+	const [valueAccount, setValueAccount] = useState({username: '2222', password: ''});
+	const history = useHistory();
 
-useEffect(() => {
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
-  signUpButton?.addEventListener('click', () => {
-    container.classList.add("right-panel-active");
-  });
-  
-  signInButton?.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-  });
-});
+	useEffect(() => {
+		const signUpButton = document.getElementById('signUp');
+		const signInButton = document.getElementById('signIn');
+		const container = document.getElementById('container');
+		signUpButton?.addEventListener('click', () => {
+			container.classList.add("right-panel-active");
+		});
+		
+		signInButton?.addEventListener('click', () => {
+			container.classList.remove("right-panel-active");
+		});
+	});
+
+	function handleChangeUsername(e) {
+		setValueAccount({...valueAccount, username: e.target.value})
+	}
+
+	function handleChangePassword(e) {
+		setValueAccount({...valueAccount, password: e.target.value})
+	}
+
+	const checkSignIn = () => {
+		console.log(valueAccount)
+		authenServices.signIn(valueAccount).then(res => history.push('/'))
+	}
 
   return (
     <div className="login-page">
@@ -36,10 +52,10 @@ const container = document.getElementById('container');
 		<form action="#">
 			<h1>Sign in</h1>
 			<span className="pb-4">or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<input value={valueAccount.username} type="email" placeholder="Email" onChange={handleChangeUsername}/>
+			<input value={valueAccount.password} type="password" placeholder="Password" onChange={handleChangePassword}/>
 			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
+			<button onClick={() => checkSignIn()}>Sign In</button>
 		</form>
 	</div>
 	<div className="overlay-container">

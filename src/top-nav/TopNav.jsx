@@ -36,25 +36,25 @@ function TopNav() {
        items: [
          {
             label:'Biểu đồ cần bán',
-            icon:'pi pi-fw pi-align-left',
+            icon:'pi pi-fw pi-sort-alt',
             id: 5,
             command: (event) => callTopNav(event),
          },
          {
             label:'Biểu đồ cần mua',
-            icon:'pi pi-fw pi-align-right',
+            icon:'pi pi-fw pi-sitemap',
             id: 6,
             command: (event) => callTopNav(event),
          },
          {
             label:'Biểu đồ cho thuê',
-            icon:'pi pi-fw pi-align-justify',
+            icon:'pi pi-fw pi-window-maximize',
             id: 7,
             command: (event) => callTopNav(event),
          },
          {
             label:'Biểu đồ cần thuê',
-            icon:'pi pi-fw pi-align-center',
+            icon:'pi pi-fw pi-slack',
             id: 8,
             command: (event) => callTopNav(event),
          },

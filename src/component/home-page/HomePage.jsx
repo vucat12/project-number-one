@@ -8,6 +8,7 @@ import Dropdown from 'react-dropdown';
 import { getDistricts } from "pc-vn";
 import { useHistory } from "react-router";
 import { dataType } from "./model/ground.js";
+import { areaSelected } from "../init-default/area";
 
 const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
@@ -49,7 +50,7 @@ function HomePage() {
 const [value, setValue] = useState({valueInput: '', valueSelect: ''});
 const [valueProvinces, setProvince] = useState('');
 const [valueDistrict, setDistrict] = useState('');
-const [valueType, setType] = useState('');
+const [valueArea, setValueArea] = useState({areaValue: '', idArea: ''});
 
 const [listOptionsDistrict, setOptionsDistrict] = useState('');
 const routing = useHistory();
@@ -59,11 +60,6 @@ useEffect(() => {
   setDistrict('');
   setOptionsDistrict(listDistrict.filter(el => el.province_value === valueProvinces));
 }, [valueProvinces])
-
-const options = [
-  {value: 'one', label: 'one'},
-  {value: 'two', label: 'two'}
-];
 
   const responsiveOptions = [
     {
@@ -129,14 +125,14 @@ const ValueSearching = () => {
         <div className="search-home-under mt-2">
         <Dropdown className="Dropdown" options={listProvinces} onChange={(e) => setProvince(e.value)} value={valueProvinces} placeholder="Tỉnh trên toàn quốc" />
         <Dropdown className="Dropdown" options={listOptionsDistrict} onChange={(e) => setDistrict(e.value)} value={valueDistrict} placeholder="Quận/ Huyện" />
-        <Dropdown className="Dropdown" options={options} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Diện tích" />
+        <Dropdown className="Dropdown" options={areaSelected} onChange={(e) => setValueSelect(e)} value={valueArea.areaValue} placeholder="Diện tích" />
         </div>
 
         </div>
       </div>
       <div className="carousel-demo pr-4 pl-4">
         <div className="card">
-            <Carousel responsiveOptions={responsiveOptions} value={products} numVisible={4} numScroll={1} responsiveOptions={responsiveOptions} className="custom-carousel" circular
+            <Carousel responsiveOptions={responsiveOptions} value={products} numVisible={4} numScroll={1} className="custom-carousel" circular
                 autoplayInterval={3000} itemTemplate={productTemplate} />
         </div>
       </div>

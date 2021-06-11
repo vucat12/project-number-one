@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from 'primereact/chart';
 import './SellerPage.scss';
-import { SellerService } from "../services/sellerServices";
+import { SellerService } from "../../services/sellerServices";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from "primereact/button";
@@ -9,7 +9,6 @@ import Dropdown from 'react-dropdown';
 import {Price} from '../init-default/price';
 import { Area, areaSelected } from "../init-default/area";
 import { getProvincesVN } from "../home-page/model/provinces";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
 const listProvinces = getProvincesVN();
@@ -153,9 +152,9 @@ function SellerPage() {
   return (
       <div className="view-chart">
         <div className="search">
-            <Dropdown className="Dropdown Dropdown-provinces" options={listProvinces} onChange={(e) => setSearchProvince(e.label)} value={searchProvince} placeholder="Tỉnh" />
-            <Dropdown className="Dropdown" options={dataPrice} onChange={(e) => setPriceValue(e)} value={searchPrice.priceValue} placeholder="Giá nhà" />
-            <Dropdown className="Dropdown" options={areaSelected} onChange={(e) => setAreaValue(e)} value={searchArea.areaValue}  placeholder="Diện tích" />
+            <Dropdown className="Dropdown Dropdown-provinces mr-3" options={listProvinces} onChange={(e) => setSearchProvince(e.label)} value={searchProvince} placeholder="Tỉnh" />
+            <Dropdown className="Dropdown mr-3" options={dataPrice} onChange={(e) => setPriceValue(e)} value={searchPrice.priceValue} placeholder="Giá nhà" />
+            <Dropdown className="Dropdown mr-3" options={areaSelected} onChange={(e) => setAreaValue(e)} value={searchArea.areaValue}  placeholder="Diện tích" />
             <Button
             onClick={() => confirm()}
             icon="pi pi-search"
