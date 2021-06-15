@@ -38,7 +38,6 @@ const productTemplate = (product) => {
 
   useEffect(() => {
     setData(location.state.data);
-    console.log("======", location.state.data);
   }, [location]);
 
   return (

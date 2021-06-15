@@ -14,35 +14,13 @@ const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
 const listTypeGround = dataType;
 let products =  [
-  {"id": "1000","code": "f230fh0g3","name": "Thủy Nguyên","Cơn sốt nóng bỏng": "Product Description","image": "bamboo-watch.jpg","price": "2 tỷ","category": "Accessories","quantity": 24,"inventoryStatus": "Cơn sốt nóng bỏng","rating": 5},
-  {"id": "1001","code": "nvklal433","name": "Black Watch","description": "Product Description","image": "black-watch.jpg","price": 72,"category": "Accessories","quantity": 61,"inventoryStatus": "INSTOCK","rating": 4},
-  {"id": "1002","code": "zz21cz3c1","name": "Blue Band","description": "Product Description","image": "blue-band.jpg","price": 79,"category": "Fitness","quantity": 2,"inventoryStatus": "LOWSTOCK","rating": 3},
-  {"id": "1003","code": "244wgerg2","name": "Blue T-Shirt","description": "Product Description","image": "blue-t-shirt.jpg","price": 29,"category": "Clothing","quantity": 25,"inventoryStatus": "INSTOCK","rating": 5},
-  {"id": "1004","code": "h456wer53","name": "Bracelet","description": "Product Description","image": "bracelet.jpg","price": 15,"category": "Accessories","quantity": 73,"inventoryStatus": "INSTOCK","rating": 4},
-  {"id": "1005","code": "av2231fwg","name": "Brown Purse","description": "Product Description","image": "brown-purse.jpg","price": 120,"category": "Accessories","quantity": 0,"inventoryStatus": "OUTOFSTOCK","rating": 4},
-  {"id": "1006","code": "bib36pfvm","name": "Chakra Bracelet","description": "Product Description","image": "chakra-bracelet.jpg","price": 32,"category": "Accessories","quantity": 5,"inventoryStatus": "LOWSTOCK","rating": 3},
-  {"id": "1007","code": "mbvjkgip5","name": "Galaxy Earrings","description": "Product Description","image": "galaxy-earrings.jpg","price": 34,"category": "Accessories","quantity": 23,"inventoryStatus": "INSTOCK","rating": 5},
-  {"id": "1008","code": "vbb124btr","name": "Game Controller","description": "Product Description","image": "game-controller.jpg","price": 99,"category": "Electronics","quantity": 2,"inventoryStatus": "LOWSTOCK","rating": 4},
-  {"id": "1009","code": "cm230f032","name": "Gaming Set","description": "Product Description","image": "gaming-set.jpg","price": 299,"category": "Electronics","quantity": 63,"inventoryStatus": "INSTOCK","rating": 3}
+  {"id": "01","code": "f230fh0g3","name": "Kinh nghiệm mua đất nền dự án: 6 lời khuyên cho nhà đầu tư mới vào thị trường","Cơn sốt nóng bỏng": "Product Description","image": "https://file4.batdongsan.com.vn/crop/354x200/2021/06/09/PHJN6Zw0/20210609161010-e64d.jpg","price": "2 tỷ","category": "Accessories","quantity": 24,"inventoryStatus": "Cơn sốt nóng bỏng","rating": 5},
+  {"id": "02","code": "nvklal433","name": "Chi phí thuê đất KCN của Việt Nam tiếp tục leo thang","description": "Product Description","image": "https://file4.batdongsan.com.vn/crop/354x200/2021/06/09/YSUn3oGJ/20210609144742-08c5.jpg","price": 72,"category": "Accessories","quantity": 61,"inventoryStatus": "INSTOCK","rating": 4},
+  {"id": "03","code": "zz21cz3c1","name": "Thông tin tổng quan về Thành phố Thuận An Bình Dương","description": "Product Description","image": "https://file4.batdongsan.com.vn/crop/354x200/2021/06/08/JGcIp0rf/20210608212338-63d7.jpg","price": 79,"category": "Fitness","quantity": 2,"inventoryStatus": "LOWSTOCK","rating": 3},
+  {"id": "04","code": "244wgerg2","name": "Covid-19 khiến sân vườn, bàn ăn cũng trở thành văn phòng","description": "Product Description","image": "https://file4.batdongsan.com.vn/crop/354x200/2021/06/04/YSUn3oGJ/20210604212150-21ff.jpg","price": 29,"category": "Clothing","quantity": 25,"inventoryStatus": "INSTOCK","rating": 5},
+  {"id": "05","code": "h456wer53","name": "BĐS công nghiệp tiếp tục khởi sắc trong làn sóng Covid lần thứ 4","description": "Product Description","image": "https://file4.batdongsan.com.vn/crop/354x200/2021/06/04/YSUn3oGJ/20210604113941-5141.jpg","price": 15,"category": "Accessories","quantity": 73,"inventoryStatus": "INSTOCK","rating": 4},
+  {"id": "06","code": "av2231fwg","name": "Hưng Yên chấp thuận thành lập Khu công nghiệp Phố Nối A mở rộng 92,5ha","description": "Product Description","image": "https://file4.batdongsan.com.vn/crop/354x200/2021/06/04/zk7ggeWN/20210604143556-4b3b.jpg","price": 120,"category": "Accessories","quantity": 0,"inventoryStatus": "OUTOFSTOCK","rating": 4},
 ]
-
-const responsiveOptions = [
-  {
-      breakpoint: '1024px',
-      numVisible: 3,
-      numScroll: 3
-  },
-  {
-      breakpoint: '600px',
-      numVisible: 2,
-      numScroll: 2
-  },
-  {
-      breakpoint: '480px',
-      numVisible: 1,
-      numScroll: 1
-  }
-];
 
 function HomePage() {
 
@@ -84,16 +62,15 @@ const viewDetail = (e) => {
 }
 
 const productTemplate = (product) => {
+
   return (
       <div className="product-item" onClick={() => viewDetail(product)}>
           <div className="product-item-content">
               <div className="p-mb-3">
-                  <img src={`showcase/demo/images/product/${product.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={product.name} className="product-image" />
+                  <img src={product.image} height={200} width={353} alt={product.name} className="product-image" />
               </div>
               <div>
-                  <h4 className="p-mb-1">{product.name}</h4>
-                  <h6 className="p-mt-0 p-mb-3">${product.price}</h6>
-                  <span className={`product-badge status-${product.inventoryStatus.toLowerCase()}`}>{product.inventoryStatus}</span>
+                  <h4 className="p-mb-1 product-item-content__title"><span>{product.id}. </span>{product.name}</h4>
               </div>
           </div>
       </div>
@@ -132,13 +109,13 @@ const ValueSearching = () => {
       </div>
       <div className="carousel-demo pr-4 pl-4">
         <div className="card">
-            <Carousel responsiveOptions={responsiveOptions} value={products} numVisible={4} numScroll={1} className="custom-carousel" circular
+            <Carousel responsiveOptions={responsiveOptions} value={products} numVisible={3} numScroll={1} className="custom-carousel" circular
                 autoplayInterval={3000} itemTemplate={productTemplate} />
         </div>
       </div>
 
       <div className="achieved">
-        <div className="achieved-title text-center mt-4">Du an tieu bieu</div>
+        <div className="achieved-title text-center mt-4">Dự án tiêu biểu</div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">
           <div onClick={() => routing.push({pathname: '/view-post'})} className="p-col achieved-result-image highlight-project-one"><span className="text-on-bg" >Tecco Elite City</span></div>
           <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Vinhomes</span></div>

@@ -34,6 +34,13 @@
         .Dropdown-control {
             margin-right: 8px;
         }
-       
+    }
+
+    .product-item-content {
+        height: 320px;
+        &__title {
+            padding: 0 45px;
+            text-align: left;
+        }
     }
 }

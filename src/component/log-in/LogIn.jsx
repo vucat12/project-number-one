@@ -2,10 +2,12 @@ import { useHistory, withRouter } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import './LogIn.scss';
 import { authenServices } from "../../services/authenServices";
+import { toast } from 'react-toastify';
 
 function LogIn() {
 
 	const [valueAccount, setValueAccount] = useState({username: '2222', password: ''});
+	const [valueSignUp, setValueSignUp] = useState({});
 	const history = useHistory();
 
 	useEffect(() => {
@@ -30,8 +32,57 @@ function LogIn() {
 	}
 
 	const checkSignIn = () => {
-		console.log(valueAccount)
-		authenServices.signIn(valueAccount).then(res => history.push('/'))
+		authenServices.signIn(valueAccount).then(res => {
+			history.push('/')
+		}).catch(err => {
+			toast(err.response.data, {
+				position: "top-right",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+		})
+	}
+
+	const checkSignUp = () => {
+		authenServices.signUp(valueSignUp).then(res => {
+			if(res.status===200) {
+				toast("Tạo tài khoản thành công!", {
+					position: "top-right",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			}
+		}).catch(err => {
+			toast(err.response.data, {
+				position: "top-right",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+		})
+	}
+
+	function handleNameSignUp(e) {
+		setValueSignUp({...valueSignUp, username: e.target.value})
+	}
+
+	function handleEmailSignUp(e) {
+		setValueSignUp({...valueSignUp, email: e.target.value})
+	}
+
+	function handlePasswordSignUp(e) {
+		setValueSignUp({...valueSignUp, password: e.target.value})
 	}
 
   return (
@@ -39,22 +90,22 @@ function LogIn() {
      <h2>Sign in/up Form</h2>
 <div className="container" id="container">
 	<div className="form-container sign-up-container">
-		<form action="#">
+		<form action="javascript:void(0);" >
 			<h1>Create Account</h1>
 			<span className="pb-4">or use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
+			<input type="text" placeholder="Name" value={valueSignUp.username} onChange={handleNameSignUp}/>
+			<input type="email" placeholder="Email" value={valueSignUp.email} onChange={handleEmailSignUp}/>
+			<input type="password" placeholder="Password" value={valueSignUp.password} onChange={handlePasswordSignUp}/>
+			<button onClick={() => checkSignUp()}>Sign Up</button>
 		</form>
 	</div>
 	<div className="form-container sign-in-container">
-		<form action="#">
+		<form action="javascript:void(0);" >
 			<h1>Sign in</h1>
 			<span className="pb-4">or use your account</span>
-			<input value={valueAccount.username} type="email" placeholder="Email" onChange={handleChangeUsername}/>
+			<input value={valueAccount.username} type="texts" placeholder="Username" onChange={handleChangeUsername}/>
 			<input value={valueAccount.password} type="password" placeholder="Password" onChange={handleChangePassword}/>
-			<a href="#">Forgot your password?</a>
+			<a>Forgot your password?</a>
 			<button onClick={() => checkSignIn()}>Sign In</button>
 		</form>
 	</div>
@@ -74,11 +125,11 @@ function LogIn() {
 	</div>
 </div>
 
-<footer>
+{/* <footer>
 	<p>
 		Created with <i className="fa fa-heart"></i> by our team
 	</p>
-</footer>
+</footer> */}
 
 
     </div>

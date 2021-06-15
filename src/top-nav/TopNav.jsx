@@ -1,8 +1,12 @@
 import { Menubar } from 'primereact/menubar';
 import { useHistory,withRouter } from "react-router-dom";
+import { informationUser } from '../services/authenServices';
 import './TopNav.scss'
+import { Button } from 'primereact/button';
 
 function TopNav() {
+
+  const user = informationUser();
   const history = useHistory();
 
   const items = [
@@ -62,9 +66,29 @@ function TopNav() {
     }
  ];
 
+ const logOut = () => {
+   localStorage.removeItem('token_authen');
+   history.push('/login'); 
+ }
+
+ const end = () =>  {
+   if(!user) {
+      return (<div><i className="pi pi-fw pi-sign-in"></i> <span className="pr-4 cursor-pointer pl-1" onClick={() => history.push("/login")}>Đăng nhập | Đăng ký</span> </div>)
+   }
+   else {
+      return (
+      <div>
+         <div className="infor-user">
+            <span className="pr-2">Username: {user.user.username}</span>
+            <span className="pr-2">Email: {user.user.email}</span>
+         </div>
+         <Button onClick={() => logOut()}>Log out</Button>
+      </div>
+      )}
+   
+   }
+
  const start = <div className="logo pl-4 pr-4 cursor-pointer mr-4"  onClick={() => history.push("/home")}></div>
-// const start = <img alt="logo" src="showcase/images/logo.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} height="40" className="p-mr-2 cursor-pointer"  onClick={() => history.push("/home")}></img>;
-const end = <div > <i className="pi pi-fw pi-sign-in"></i> <span className="pr-4 cursor-pointer pl-1" onClick={() => history.push("/login")}>Đăng nhập | Đăng ký</span> </div>;
 const callTopNav = (event) => {
    switch (event.item.id) {
       case 1:
