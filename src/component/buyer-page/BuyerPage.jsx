@@ -10,10 +10,12 @@ import { Area, areaSelected } from "../init-default/area";
 import { getProvincesVN } from "../home-page/model/provinces";
 import { useHistory } from "react-router";
 import { BuyerService } from "../../services/buyerServices";
+import { getDistricts } from "pc-vn";
 
 const listProvinces = getProvincesVN();
 const productService = BuyerService;
 const dataPrice = Price;
+const listDistrict = getDistricts();
 
 function BuyerPage() {
     const [products, setProducts] = useState();
@@ -22,6 +24,8 @@ function BuyerPage() {
     const [searchProvince, setSearchProvince] = useState('');
     const [dataCircle, setDataCircle] = useState([]);
     const [dataLine, setDataLine] = useState([]);
+    const [searchDistrict, setDistrict] = useState('');
+    const [listOptionsDistrict, setOptionsDistrict] = useState('');
 
     const history = useHistory();
 
@@ -30,11 +34,17 @@ function BuyerPage() {
         getRatePercent();
     }, []);
 
-    const getHouse = (idPrice, area, province) => {
+    useEffect(() => {
+        setDistrict('');
+        setOptionsDistrict(listDistrict.filter(el => el.province_name === searchProvince));
+      }, [searchProvince])
+
+    const getHouse = (idPrice, area, province, district) => {
         const data = {
             data: idPrice,
             area: area,
             province: province!=='All' ? province : undefined,
+            district: district!=='All' ? district : undefined,
         }
         productService.getLowHouse(data).then((data) => {
             setProducts(data);
@@ -129,13 +139,10 @@ function BuyerPage() {
     }
 
     const confirm = (event) => {
-        getHouse(searchPrice.idPrice, searchArea.idArea, searchProvince);
+        getHouse(searchPrice.idPrice, searchArea.idArea, searchProvince, searchDistrict);
     };
 
     const setPriceValue = (e) => {
-        // productService.getLowHouse(e.value).then((data) => {
-        //     setProducts(data);
-        // });
         setSearch({priceValue: e.label, idPrice: e.value})
     }
 
@@ -152,6 +159,7 @@ function BuyerPage() {
       <div className="view-chart">
         <div className="search">
             <Dropdown className="Dropdown Dropdown-provinces mr-3" options={listProvinces} onChange={(e) => setSearchProvince(e.label)} value={searchProvince} placeholder="Tỉnh" />
+            <Dropdown className="Dropdown mr-3" options={listOptionsDistrict} onChange={(e) => setDistrict(e.label)} value={searchDistrict} placeholder="Quận/ Huyện" />
             <Dropdown className="Dropdown mr-3" options={dataPrice} onChange={(e) => setPriceValue(e)} value={searchPrice.priceValue} placeholder="Giá nhà" />
             <Dropdown className="Dropdown mr-3" options={areaSelected} onChange={(e) => setAreaValue(e)} value={searchArea.areaValue}  placeholder="Diện tích" />
             <Button

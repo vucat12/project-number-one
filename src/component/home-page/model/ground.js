@@ -1,31 +1,21 @@
 export const dataType = [
   { 
-  value : "01",
-  label : "Căn hộ chung cư",
+  value : "1",
+  label : "Cần Bán",
   unit : "Thành phố Trung ương",},
   { 
-  value : "02",
-  label : "Các loại nhà dân",
+  value : "2",
+  label : "Cần Mua",
   unit : "Tỉnh"
   },
   {
-  value : "04",
-  label : "Các loại đất bán",
+  value : "3",
+  label : "Cho Thuê",
   unit : "Tỉnh",
   },
   { 
-  value : "06",
-  label : "Trang trại, khu nghỉ dưỡng",
+  value : "4",
+  label : "Cần Thuê",
   unit : "Tỉnh",
   },
-  { 
-  value : "08",
-  label : "Kho, nhà xưởng",
-  unit : "Tỉnh",
-  },
-  { 
-  value : "10",
-  label : "Bất động sản khác",
-  unit : "Tỉnh"
-  }
 ]
