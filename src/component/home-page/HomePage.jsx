@@ -9,10 +9,13 @@ import { getDistricts } from "pc-vn";
 import { useHistory } from "react-router";
 import { dataType } from "./model/ground.js";
 import { areaSelected } from "../init-default/area";
+import { Price } from "../init-default/price.js";
 
 const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
 const listTypeGround = dataType;
+const dataPrice = Price;
+
 let products =  [
   {"id": "01","code": "f230fh0g3","name": "Kinh nghiệm mua đất nền dự án: 6 lời khuyên cho nhà đầu tư mới vào thị trường","Cơn sốt nóng bỏng": "Product Description","image": "https://file4.batdongsan.com.vn/crop/354x200/2021/06/09/PHJN6Zw0/20210609161010-e64d.jpg","price": "2 tỷ","category": "Accessories","quantity": 24,"inventoryStatus": "Cơn sốt nóng bỏng","rating": 5},
   {"id": "02","code": "nvklal433","name": "Chi phí thuê đất KCN của Việt Nam tiếp tục leo thang","description": "Product Description","image": "https://file4.batdongsan.com.vn/crop/354x200/2021/06/09/YSUn3oGJ/20210609144742-08c5.jpg","price": 72,"category": "Accessories","quantity": 61,"inventoryStatus": "INSTOCK","rating": 4},
@@ -23,12 +26,11 @@ let products =  [
 ]
 
 function HomePage() {
-
-
 const [value, setValue] = useState({valueInput: '', valueSelect: ''});
 const [valueProvinces, setProvince] = useState('');
 const [valueDistrict, setDistrict] = useState('');
 const [valueArea, setValueArea] = useState({areaValue: '', idArea: ''});
+const [valuePrice, setValuePrice] = useState({priceValue: '', idPrice: ''});
 
 const [listOptionsDistrict, setOptionsDistrict] = useState('');
 const routing = useHistory();
@@ -36,7 +38,7 @@ const routing = useHistory();
 
 useEffect(() => {
   setDistrict('');
-  setOptionsDistrict(listDistrict.filter(el => el.province_value === valueProvinces));
+  setOptionsDistrict(listDistrict.filter(el => el.province_name === valueProvinces));
 }, [valueProvinces])
 
   const responsiveOptions = [
@@ -85,8 +87,50 @@ const setValueSelect = (e) => {
   setValue({...value, valueSelect: e.value})
 }
 
+const setValueAreaSearch = (e) => {
+  setValueArea({areaValue: e.label, idArea: e.value})
+}
+
 const ValueSearching = () => {
-  console.log("======", valueProvinces, valueDistrict)
+const dataSearch = {
+  province: valueProvinces,
+  district: valueDistrict,
+  price: valuePrice.value,
+  area: valueArea.idArea,
+}
+
+  switch (parseInt(value.valueSelect)) {
+    case 1:
+      routing.push({
+        pathname: "/seller-page",
+        state: {...dataSearch}
+      })
+      break;
+
+    case 2:
+      routing.push({
+        pathname: "/buyer-page",
+        state: {...dataSearch}
+      })
+      break;
+
+    case 3:
+      routing.push({
+        pathname: "/lessor-page",
+        state: {...dataSearch}
+      })
+      break;
+
+    case 4:
+      routing.push({
+        pathname: "/tenant-page",
+        state: {...dataSearch}
+      })
+      break;
+  
+    default:
+      break;
+  }
 }
 
   return (
@@ -100,9 +144,12 @@ const ValueSearching = () => {
                   iconPos="right" onClick={ValueSearching}/>
         </div>
         <div className="search-home-under mt-2">
-        <Dropdown className="Dropdown" options={listProvinces} onChange={(e) => setProvince(e.value)} value={valueProvinces} placeholder="Tỉnh trên toàn quốc" />
-        <Dropdown className="Dropdown" options={listOptionsDistrict} onChange={(e) => setDistrict(e.value)} value={valueDistrict} placeholder="Quận/ Huyện" />
-        <Dropdown className="Dropdown" options={areaSelected} onChange={(e) => setValueSelect(e)} value={valueArea.areaValue} placeholder="Diện tích" />
+        <Dropdown className="Dropdown" options={listProvinces} onChange={(e) => setProvince(e.label)} value={valueProvinces} placeholder="Tỉnh trên toàn quốc" />
+        <Dropdown className="Dropdown" options={listOptionsDistrict} onChange={(e) => setDistrict(e.label)} value={valueDistrict} placeholder="Quận/ Huyện" />
+
+        <Dropdown className="Dropdown" options={dataPrice} onChange={(e) => setValuePrice(e)} value={valuePrice.priceValue} placeholder="Giá" />
+        
+        <Dropdown className="Dropdown pt-3" options={areaSelected} onChange={(e) => setValueAreaSearch(e)} value={valueArea.areaValue} placeholder="Diện tích" />
         </div>
 
         </div>

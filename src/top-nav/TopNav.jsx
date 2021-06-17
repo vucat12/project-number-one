@@ -80,12 +80,10 @@ function TopNav() {
       <div>
          <div className="infor-user">
             <span className="pr-2">Username: {user.user.username}</span>
-            <span className="pr-2">Email: {user.user.email}</span>
          </div>
          <Button onClick={() => logOut()}>Log out</Button>
       </div>
       )}
-   
    }
 
  const start = <div className="logo pl-4 pr-4 cursor-pointer mr-4"  onClick={() => history.push("/home")}></div>
