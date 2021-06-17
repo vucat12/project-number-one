@@ -29,35 +29,35 @@ function TopNav() {
        command: (event) => callTopNav(event),
     },
     {
-       label:'Sự kiện',
-       icon:'pi pi-fw pi-calendar',
+       label:'Thông tin biểu đồ',
+       icon:'pi pi-fw pi-chart-bar',
        id: 4,
        command: (event) => callTopNav(event),
     },
     {
-       label:'Thông tin biểu đồ',
+       label:'Thông tin nhà đất',
        icon:'pi pi-fw pi-chart-bar',
        items: [
          {
-            label:'Biểu đồ cần bán',
+            label:'Nhà đất cần bán',
             icon:'pi pi-fw pi-sort-alt',
             id: 5,
             command: (event) => callTopNav(event),
          },
          {
-            label:'Biểu đồ cần mua',
+            label:'Nhà đất cần mua',
             icon:'pi pi-fw pi-sitemap',
             id: 6,
             command: (event) => callTopNav(event),
          },
          {
-            label:'Biểu đồ cho thuê',
+            label:'Nhà đất cho thuê',
             icon:'pi pi-fw pi-window-maximize',
             id: 7,
             command: (event) => callTopNav(event),
          },
          {
-            label:'Biểu đồ cần thuê',
+            label:'Nhà đất cần thuê',
             icon:'pi pi-fw pi-slack',
             id: 8,
             command: (event) => callTopNav(event),
