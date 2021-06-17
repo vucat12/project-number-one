@@ -32,7 +32,7 @@ function SellerPage() {
     useEffect(() => {
 
         let dataState = history.location.state;
-        getHouse(dataState.price, dataState.area, dataState.province, dataState.district);
+        getHouse(dataState?.price, dataState?.area, dataState?.province, dataState?.district);
         getRatePercent();
     }, []);
 
@@ -43,8 +43,8 @@ function SellerPage() {
 
     const getHouse = (idPrice, area, province, district) => {
         const data = {
-            data: idPrice,
-            area: area,
+            data: idPrice?idPrice:undefined,
+            area: area?area:undefined,
             province: province!=='All' ? province : undefined,
             district: district!=='All' ? district : undefined,
         }
