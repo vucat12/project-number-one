@@ -95,7 +95,7 @@ const ValueSearching = () => {
 const dataSearch = {
   province: valueProvinces,
   district: valueDistrict,
-  price: valuePrice.value,
+  priceValue: valuePrice.idPrice,
   area: valueArea.idArea,
 }
 
@@ -133,23 +133,27 @@ const dataSearch = {
   }
 }
 
+  const setPriceValue = (e) => {
+    setValuePrice({priceValue: e.label, idPrice: e.value})
+  }
+
   return (
     <div className="home-page">
       <div className="background-home background-test">
         <div className="search-home">
         <div className="search-home-head ">
                   <Dropdown className="Dropdown" options={listTypeGround} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Loại nhà đất" />
-                  <InputText className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Tìm kiếm địa điểm và khu vực" />
+                  <InputText disabled className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Tìm kiếm địa điểm và khu vực" />
                   <Button className="button-noFocus" label="Click" icon="pi pi-search"  
                   iconPos="right" onClick={ValueSearching}/>
         </div>
         <div className="search-home-under mt-2">
-        <Dropdown className="Dropdown" options={listProvinces} onChange={(e) => setProvince(e.label)} value={valueProvinces} placeholder="Tỉnh trên toàn quốc" />
+        <Dropdown className="Dropdown" options={listProvinces} onChange={(e) => setProvince(e.label)} value={valueProvinces} placeholder="Khu vực" />
         <Dropdown className="Dropdown" options={listOptionsDistrict} onChange={(e) => setDistrict(e.label)} value={valueDistrict} placeholder="Quận/ Huyện" />
 
-        <Dropdown className="Dropdown" options={dataPrice} onChange={(e) => setValuePrice(e)} value={valuePrice.priceValue} placeholder="Giá" />
+        <Dropdown className="Dropdown" options={dataPrice} onChange={(e) => setPriceValue(e)} value={valuePrice.priceValue} placeholder="Giá" />
         
-        <Dropdown className="Dropdown pt-3" options={areaSelected} onChange={(e) => setValueAreaSearch(e)} value={valueArea.areaValue} placeholder="Diện tích" />
+        <Dropdown className="Dropdown" options={areaSelected} onChange={(e) => setValueAreaSearch(e)} value={valueArea.areaValue} placeholder="Diện tích" />
         </div>
 
         </div>

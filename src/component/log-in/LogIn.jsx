@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 
 function LogIn() {
 
-	const [valueAccount, setValueAccount] = useState({username: '2222', password: ''});
-	const [valueSignUp, setValueSignUp] = useState({});
+	const [valueAccount, setValueAccount] = useState({username: '', password: ''});
+	const [valueSignUp, setValueSignUp] = useState({username: '', email: '', password: ''});
 	const history = useHistory();
 
 	useEffect(() => {
@@ -48,20 +48,11 @@ function LogIn() {
 	}
 
 	const checkSignUp = () => {
-		authenServices.signUp(valueSignUp).then(res => {
-			if(res.status===200) {
-				toast("Tạo tài khoản thành công!", {
-					position: "top-right",
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				});
-			}
-		}).catch(err => {
-			toast(err.response.data, {
+
+		console.log(valueSignUp);
+
+		if(valueSignUp.username === '' || valueSignUp.password === '' || valueSignUp.email === '') {
+			toast("Bạn phải nhập đầy đủ thông tin!", {
 				position: "top-right",
 				autoClose: 3000,
 				hideProgressBar: false,
@@ -70,7 +61,32 @@ function LogIn() {
 				draggable: true,
 				progress: undefined,
 			});
-		})
+		} 
+		else {
+			authenServices.signUp(valueSignUp).then(res => {
+				if(res.status===200) {
+					toast("Tạo tài khoản thành công!", {
+						position: "top-right",
+						autoClose: 3000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+					});
+				}
+			}).catch(err => {
+				toast(err.response.data, {
+					position: "top-right",
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			})
+		}
 	}
 
 	function handleNameSignUp(e) {

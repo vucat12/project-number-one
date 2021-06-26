@@ -30,19 +30,36 @@ function BuyerPage() {
     const history = useHistory();
 
     useEffect(() => {
-        getHouse();
+        let dataState = history.location.state;
+        if(dataState?.priceValue) {
+            setSearch({
+                priceValue: dataPrice.filter(el => el.value===dataState.priceValue)[0].label,
+                idPrice: dataState?.price
+            });
+        }
+        if(dataState?.area) {
+            setSearchArea({
+                idArea: dataState.area,
+                areaValue: areaSelected.filter(el => el.value===dataState.area)[0].label
+            })
+        }
+        if(dataState?.province) {
+            setSearchProvince(dataState.province)
+            setOptionsDistrict(listDistrict.filter(el => el.province_name === dataState.province));
+        }
+        if(dataState?.district) {
+            setDistrict(dataState.district)
+        }
+
+        getHouse(dataState?.priceValue, dataState?.area, dataState?.province, dataState?.district);
+
         getRatePercent();
     }, []);
 
-    useEffect(() => {
-        setDistrict('');
-        setOptionsDistrict(listDistrict.filter(el => el.province_name === searchProvince));
-      }, [searchProvince])
-
     const getHouse = (idPrice, area, province, district) => {
         const data = {
-            data: idPrice,
-            area: area,
+            data: idPrice ? idPrice : undefined,
+            area: area ? area : undefined,
             province: province!=='All' ? province : undefined,
             district: district!=='All' ? district : undefined,
         }
@@ -155,10 +172,16 @@ function BuyerPage() {
         history.push("/view-post",{data: data})
     }
 
+    const handleChangeProvince = (e) => {
+        setOptionsDistrict(listDistrict.filter(el => el.province_name === e.label));
+        setSearchProvince(e.label)
+        setDistrict('');
+    }
+
   return (
       <div className="view-chart">
         <div className="search">
-            <Dropdown className="Dropdown Dropdown-provinces mr-3" options={listProvinces} onChange={(e) => setSearchProvince(e.label)} value={searchProvince} placeholder="Tỉnh" />
+            <Dropdown className="Dropdown Dropdown-provinces mr-3" options={listProvinces} onChange={(e) => handleChangeProvince(e)} value={searchProvince} placeholder="Tỉnh" />
             <Dropdown className="Dropdown mr-3" options={listOptionsDistrict} onChange={(e) => setDistrict(e.label)} value={searchDistrict} placeholder="Quận/ Huyện" />
             <Dropdown className="Dropdown mr-3" options={dataPrice} onChange={(e) => setPriceValue(e)} value={searchPrice.priceValue} placeholder="Giá nhà" />
             <Dropdown className="Dropdown mr-3" options={areaSelected} onChange={(e) => setAreaValue(e)} value={searchArea.areaValue}  placeholder="Diện tích" />
@@ -168,7 +191,7 @@ function BuyerPage() {
             label="Search"
             className="p-mr-2 ml-3"
             ></Button>
-            <div className="result-found">
+            <div className="result-found pt-3">
                 <span style={{fontWeight: 'bold'}}>Tổng kết quả: {products?.length}</span>
             </div>
         </div>
