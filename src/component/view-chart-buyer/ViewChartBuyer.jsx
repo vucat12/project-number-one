@@ -1,10 +1,10 @@
 import { Chart } from 'primereact/chart'
 import React, { useEffect, useState } from 'react';
-import { SellerService } from '../../services/sellerServices';
+import { BuyerService } from '../../services/buyerServices';
 import { Area } from "../init-default/area";
 
-function ViewChartSeller() {
-    const productService = SellerService;
+function ViewChartBuyer() {
+    const productService = BuyerService;
     const [dataCircle, setDataCircle] = useState([]);
     const [dataLine, setDataLine] = useState([]);
 
@@ -107,7 +107,7 @@ function ViewChartSeller() {
             Thông tin biểu đồ về thị trường bất động sản Việt Nam
         </div>
         <div className="card">
-                <h5>Biểu đồ tròn diện tích đất cần bán (% m2)</h5>
+                <h5>Biểu đồ tròn diện tích đất cần mua (% m2)</h5>
                 <Chart width="600px" height="600px" type="pie" data={chartData} options={lightOptions} />
         </div>
         <div className="card" style={{paddingTop: '32px'}}>
@@ -120,4 +120,4 @@ function ViewChartSeller() {
     )
 }
 
-export default ViewChartSeller
+export default ViewChartBuyer

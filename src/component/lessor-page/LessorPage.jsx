@@ -186,7 +186,7 @@ function LessorPage() {
       <div className="view-chart">
         <div className="search">
             <Dropdown className="Dropdown Dropdown-provinces mr-3" options={listProvinces} onChange={(e) => handleChangeProvince(e)} value={searchProvince} placeholder="Tỉnh" />
-            <Dropdown className="Dropdown mr-3" options={listOptionsDistrict} onChange={(e) => setDistrict(e.label)} value={searchDistrict} placeholder="Quận/ Huyện" />
+            <Dropdown className="Dropdown mr-3" options={listOptionsDistrict} onChange={(e) => setDistrict(e.label)} value={searchDistrict} placeholder="Quận/ Huyện" disabled={searchProvince === '' ? true : false}/>
             <Dropdown className="Dropdown mr-3" options={dataPrice} onChange={(e) => setPriceValue(e)} value={searchPrice.priceValue} placeholder="Giá nhà" />
             <Dropdown className="Dropdown mr-3" options={areaSelected} onChange={(e) => setAreaValue(e)} value={searchArea.areaValue}  placeholder="Diện tích" />
             <Button

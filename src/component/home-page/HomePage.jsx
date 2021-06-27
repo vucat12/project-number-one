@@ -10,6 +10,7 @@ import { useHistory } from "react-router";
 import { dataType } from "./model/ground.js";
 import { areaSelected } from "../init-default/area";
 import { Price } from "../init-default/price.js";
+import { toast } from "react-toastify";
 
 const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
@@ -64,7 +65,6 @@ const viewDetail = (e) => {
 }
 
 const productTemplate = (product) => {
-
   return (
       <div className="product-item" onClick={() => viewDetail(product)}>
           <div className="product-item-content">
@@ -92,13 +92,24 @@ const setValueAreaSearch = (e) => {
 }
 
 const ValueSearching = () => {
-const dataSearch = {
-  province: valueProvinces,
-  district: valueDistrict,
-  priceValue: valuePrice.idPrice,
-  area: valueArea.idArea,
+  const dataSearch = {
+    province: valueProvinces,
+    district: valueDistrict,
+    priceValue: valuePrice.idPrice,
+    area: valueArea.idArea,
 }
-
+if(value.valueSelect === '') {
+  toast("Bạn phải chọn loại nhà đất", {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+} 
+else {
   switch (parseInt(value.valueSelect)) {
     case 1:
       routing.push({
@@ -131,6 +142,9 @@ const dataSearch = {
     default:
       break;
   }
+}
+
+
 }
 
   const setPriceValue = (e) => {
@@ -166,16 +180,16 @@ const dataSearch = {
       </div>
 
       <div className="achieved">
-        <div className="achieved-title text-center mt-4">Dự án tiêu biểu</div>
+        <div className="achieved-title text-center mt-4">Thành phố tiêu biểu</div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">
-          <div onClick={() => routing.push({pathname: '/view-post'})} className="p-col achieved-result-image highlight-project-one"><span className="text-on-bg" >Tecco Elite City</span></div>
-          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Vinhomes</span></div>
-          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hồ Chí Minh'}})} className="p-col achieved-result-image highlight-project-one"><span className="text-on-bg" >Hồ chí minh</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hà Nội'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Hà nội</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Đà Nẵng'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Đà Nẵng</span></div>
         </div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">
-          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
-          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
-          <div className="p-col achieved-result-image background-test"><span className="text-on-bg">Text in background</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Bình Dương'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Bình dương</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Đồng Nai'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Đồng nai</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hải Phòng'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Hải Phòng</span></div>
         </div>
       </div>
 

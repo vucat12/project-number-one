@@ -61,10 +61,9 @@ const productTemplate = (product) => {
         </div>
 
         <div className="card view-detail-carousel">
-          <Carousel value={data?.imageInf} numVisible={3} numScroll={1} responsiveOptions={responsiveOptions} className="custom-carousel" circular
-             itemTemplate={productTemplate} header={<h3>Hình ảnh chi tiết</h3>} />
+          <Carousel value={data?.imageInf} numVisible={2} numScroll={1} responsiveOptions={responsiveOptions} className="custom-carousel" circular
+           autoplayInterval={3000} itemTemplate={productTemplate} header={<h3>Hình ảnh chi tiết</h3>} />
         </div>
-
         <div className="view-detail-image mb-4">
           <span className="view-detail-image_description"><em>Hình ảnh mô tả</em></span>
         </div>
