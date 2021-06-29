@@ -31,8 +31,32 @@ function TopNav() {
     {
        label:'Thông tin biểu đồ',
        icon:'pi pi-fw pi-chart-bar',
-       id: 4,
-       command: (event) => callTopNav(event),
+       items: [
+         {
+            label:'Nhà đất cần bán',
+            icon:'pi pi-fw pi-sort-alt',
+            id: 11,
+            command: (event) => callTopNav(event),
+         },
+         {
+            label:'Nhà đất cần mua',
+            icon:'pi pi-fw pi-sort-alt',
+            id: 12,
+            command: (event) => callTopNav(event),
+         },
+         {
+            label:'Nhà đất cho thuê',
+            icon:'pi pi-fw pi-sort-alt',
+            id: 13,
+            command: (event) => callTopNav(event),
+         },
+         {
+            label:'Nhà đất cần thuê',
+            icon:'pi pi-fw pi-sort-alt',
+            id: 14,
+            command: (event) => callTopNav(event),
+         },
+       ]
     },
     {
        label:'Thông tin nhà đất',
@@ -95,6 +119,7 @@ const callTopNav = (event) => {
       case 2: 
          history.push("/edit");
          break;
+     
       case 5: 
          history.push("/seller-page");
          break;
@@ -109,6 +134,18 @@ const callTopNav = (event) => {
          break;
       case 9: 
          history.push("/sign-up");
+         break;
+      case 11: 
+         history.push("/view-chart-seller")
+         break;  
+      case 12:
+         history.push("/view-chart-buyer")
+         break;
+      case 13:
+         history.push("view-chart-lessor")
+         break;
+      case 14:
+         history.push("view-chart-tenant")
          break;
 
       default:

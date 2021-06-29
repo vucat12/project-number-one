@@ -8,6 +8,10 @@ import { useLocation } from "react-router";
 import BuyerPage from "../component/buyer-page/BuyerPage";
 import LessorPage from "../component/lessor-page/LessorPage";
 import TenantPage from "../component/tenant-page/TenantPage";
+import ViewChartSeller from "../component/view-chart-seller/ViewChartSeller";
+import ViewChartBuyer from "../component/view-chart-buyer/ViewChartBuyer";
+import ViewChartLessor from "../component/view-chart-lessor/ViewChartLessor";
+import ViewChartTentant from "../component/view-chart-tenant/ViewChartTentant";
 
 function Routing() {
   const location = useLocation();
@@ -43,6 +47,19 @@ function Routing() {
           <Route path="/view-post">
             <ViewPost/>
           </Route>
+          <Route path="/view-chart-seller">
+            <ViewChartSeller/>
+          </Route>
+          <Route path="/view-chart-buyer">
+            <ViewChartBuyer/>
+          </Route>
+          <Route path="/view-chart-lessor">
+            <ViewChartLessor/>
+          </Route>
+          <Route path="/view-chart-tenant">
+            <ViewChartTentant/>
+          </Route>
+
           <Redirect to="/home" />
     </Switch>
   );
