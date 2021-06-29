@@ -25,7 +25,7 @@ function TopNav() {
     {
        label:'Dự án',
        icon:'pi pi-fw pi-flag',
-       id: 3,
+       id: 2,
        command: (event) => callTopNav(event),
     },
     {
@@ -117,7 +117,7 @@ const callTopNav = (event) => {
          history.push("/home");
          break;
       case 2: 
-         history.push("/edit");
+         history.push("/comming-soon");
          break;
      
       case 5: 

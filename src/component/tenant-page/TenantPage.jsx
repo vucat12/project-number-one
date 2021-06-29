@@ -201,11 +201,11 @@ function TenantPage() {
           <div className="card table-data">
             <DataTable value={products} paginator rows={10} onRowClick={(e) => viewPostDetail(e)}>
                 <Column body={imageBodyTemplate} header="Image"></Column>
-                <Column field="titleInf" header="Tiêu đề"></Column>
-                <Column field="priceInf" header="Giá"></Column>
-                <Column field="descriptionInf" header="Mô tả"></Column>
-                <Column field="areaInf" header="Diên tích"></Column>
-                <Column field="addressInf" header="Địa chỉ"></Column>
+                <Column field="titleInf" header="Tiêu đề" sortable></Column>
+                <Column field="priceInf" header="Giá" sortable></Column>
+                <Column field="descriptionInf" header="Mô tả" sortable></Column>
+                <Column field="areaInf" header="Diên tích" sortable></Column>
+                <Column field="addressInf" header="Địa chỉ" sortable></Column>
             </DataTable>
             </div>
         <div className="view-chart-title">

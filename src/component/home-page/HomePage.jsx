@@ -32,15 +32,23 @@ const [valueProvinces, setProvince] = useState('');
 const [valueDistrict, setDistrict] = useState('');
 const [valueArea, setValueArea] = useState({areaValue: '', idArea: ''});
 const [valuePrice, setValuePrice] = useState({priceValue: '', idPrice: ''});
-
 const [listOptionsDistrict, setOptionsDistrict] = useState('');
 const routing = useHistory();
-
+const [imageRender, setImageRender] = useState(1);
 
 useEffect(() => {
   setDistrict('');
   setOptionsDistrict(listDistrict.filter(el => el.province_name === valueProvinces));
 }, [valueProvinces])
+
+useEffect(() => {
+  const intervalID = setTimeout(() => {
+    if(imageRender === 3) setImageRender(1);
+    else setImageRender(imageRender + 1)
+  }, 5000);
+
+  return () => clearInterval(intervalID);
+});
 
   const responsiveOptions = [
     {
@@ -57,16 +65,9 @@ useEffect(() => {
     }
   ];
 
-const viewDetail = (e) => {
-  routing.push({
-    pathname: '/view-post',
-    state: { ...e }
-});
-}
-
 const productTemplate = (product) => {
   return (
-      <div className="product-item" onClick={() => viewDetail(product)}>
+      <div className="product-item">
           <div className="product-item-content">
               <div className="p-mb-3">
                   <img src={product.image} height={200} width={353} alt={product.name} className="product-image" />
@@ -143,8 +144,6 @@ else {
       break;
   }
 }
-
-
 }
 
   const setPriceValue = (e) => {
@@ -156,10 +155,10 @@ else {
       <div className="background-home background-test">
         <div className="search-home">
         <div className="search-home-head ">
-                  <Dropdown className="Dropdown" options={listTypeGround} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Loại nhà đất" />
-                  <InputText disabled className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Tìm kiếm địa điểm và khu vực" />
-                  <Button className="button-noFocus" label="Click" icon="pi pi-search"  
-                  iconPos="right" onClick={ValueSearching}/>
+          <Dropdown className="Dropdown" options={listTypeGround} onChange={(e) => setValueSelect(e)} value={value.valueSelect} placeholder="Loại nhà đất" />
+          <InputText disabled className="search-home-input input-noFocus" value={value.valueInput} onChange={(e) => setValueInput(e)} placeholder="Tìm kiếm địa điểm và khu vực" />
+          <Button className="button-noFocus" label="Click" icon="pi pi-search"  
+          iconPos="right" onClick={ValueSearching}/>
         </div>
         <div className="search-home-under mt-2">
         <Dropdown className="Dropdown" options={listProvinces} onChange={(e) => setProvince(e.label)} value={valueProvinces} placeholder="Khu vực" />
@@ -172,7 +171,8 @@ else {
 
         </div>
       </div>
-      <div className="carousel-demo pr-4 pl-4">
+      <div className="carousel-demo">
+      <div className="achieved-title text-center mt-4 font-sans">Tin tức nổi bật</div>
         <div className="card">
             <Carousel responsiveOptions={responsiveOptions} value={products} numVisible={3} numScroll={1} className="custom-carousel" circular
                 autoplayInterval={3000} itemTemplate={productTemplate} />
@@ -180,16 +180,16 @@ else {
       </div>
 
       <div className="achieved">
-        <div className="achieved-title text-center mt-4">Thành phố tiêu biểu</div>
+        <div className="achieved-title text-center mt-4 font-sans">Bất động sản theo địa điểm</div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">
-          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hồ Chí Minh'}})} className="p-col achieved-result-image highlight-project-one"><span className="text-on-bg" >Hồ chí minh</span></div>
-          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hà Nội'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Hà nội</span></div>
-          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Đà Nẵng'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Đà Nẵng</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hồ Chí Minh'}})} className={`p-col achieved-result-image img-sai-gon-${imageRender}`}><span className="text-on-bg" >Hồ chí minh</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hà Nội'}})} className={`p-col achieved-result-image img-ha-noi-${imageRender}`}><span className="text-on-bg">Hà nội</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Đà Nẵng'}})} className={`p-col achieved-result-image img-da-nang-${imageRender}`}><span className="text-on-bg">Đà Nẵng</span></div>
         </div>
         <div className="achieved-result p-grid text-center mt-4 p-align-center">
-          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Bình Dương'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Bình dương</span></div>
-          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Đồng Nai'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Đồng nai</span></div>
-          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hải Phòng'}})} className="p-col achieved-result-image background-test"><span className="text-on-bg">Hải Phòng</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Bình Dương'}})} className={`p-col achieved-result-image img-binh-duong-${imageRender}`}><span className="text-on-bg">Bình dương</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Đồng Nai'}})} className={`p-col achieved-result-image img-dong-nai-${imageRender}`}><span className="text-on-bg">Đồng Nai</span></div>
+          <div onClick={() => routing.push({pathname: '/seller-page', state: {province: 'Hải Phòng'}})} className={`p-col achieved-result-image img-hai-phong-${imageRender}`}><span className="text-on-bg">Hải Phòng</span></div>
         </div>
       </div>
 

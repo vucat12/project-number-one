@@ -48,9 +48,6 @@ function LogIn() {
 	}
 
 	const checkSignUp = () => {
-
-		console.log(valueSignUp);
-
 		if(valueSignUp.username === '' || valueSignUp.password === '' || valueSignUp.email === '') {
 			toast("Bạn phải nhập đầy đủ thông tin!", {
 				position: "top-right",
@@ -102,40 +99,38 @@ function LogIn() {
 	}
 
   return (
-    <div className="login-page">
-     <h2>Sign in/up Form</h2>
+    <div className="login-page pt-1">
+     <h2>Đăng nhập/ Đăng ký</h2>
 <div className="container" id="container">
 	<div className="form-container sign-up-container">
-		<form action="javascript:void(0);" >
-			<h1>Create Account</h1>
-			<span className="pb-4">or use your email for registration</span>
-			<input type="text" placeholder="Name" value={valueSignUp.username} onChange={handleNameSignUp}/>
+		<form action="javascript:void(0);">
+			<h1>Tạo tài khoản</h1>
+			<input type="text" placeholder="Tên tài khoản" value={valueSignUp.username} onChange={handleNameSignUp}/>
 			<input type="email" placeholder="Email" value={valueSignUp.email} onChange={handleEmailSignUp}/>
-			<input type="password" placeholder="Password" value={valueSignUp.password} onChange={handlePasswordSignUp}/>
-			<button onClick={() => checkSignUp()}>Sign Up</button>
+			<input type="password" placeholder="Mật khẩu" value={valueSignUp.password} onChange={handlePasswordSignUp}/>
+			<button onClick={() => checkSignUp()}>Đăng ký</button>
 		</form>
 	</div>
 	<div className="form-container sign-in-container">
 		<form action="javascript:void(0);" >
-			<h1>Sign in</h1>
-			<span className="pb-4">or use your account</span>
-			<input value={valueAccount.username} type="texts" placeholder="Username" onChange={handleChangeUsername}/>
-			<input value={valueAccount.password} type="password" placeholder="Password" onChange={handleChangePassword}/>
-			<a>Forgot your password?</a>
-			<button onClick={() => checkSignIn()}>Sign In</button>
+			<h1>Đăng nhập</h1>
+			<input value={valueAccount.username} type="texts" placeholder="Tài khoản" onChange={handleChangeUsername}/>
+			<input value={valueAccount.password} type="password" placeholder="Mật khẩu" onChange={handleChangePassword}/>
+			<a>Quên mật khẩu</a>
+			<button onClick={() => checkSignIn()}>Đăng nhập</button>
 		</form>
 	</div>
 	<div className="overlay-container">
 		<div className="overlay">
 			<div className="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button className="ghost" id="signIn">Sign In</button>
+				<h1>Chào mừng trở lại!</h1>
+				<p>Đăng nhập với tài khoản cá nhân</p>
+				<button className="ghost" id="signIn">Đăng nhập</button>
 			</div>
 			<div className="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button className="ghost" id="signUp">Sign Up</button>
+				<h1>Chào bạn!</h1>
+				<p>Nhập tài khoản và mật khẩu để bắt đầu hành với chúng tôi</p>
+				<button className="ghost" id="signUp">Đăng ký</button>
 			</div>
 		</div>
 	</div>

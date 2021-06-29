@@ -32,3 +32,5 @@ export const Price = [
         unit: 'Price',
     },
 ]
+
+export const labelPrice = ['0-1', '1-2', '2-3', '3-4', 'Trên 4']

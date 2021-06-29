@@ -1,11 +1,10 @@
 .footer {
-    background-image: url("https://giadungviet.vn/wp-content/uploads/BACKGROUND-FOOTER-1.jpg");
     background-size: cover;
     width: 100% !important;
     height: 350px;
     clear: both;
     position: relative;
-    height: 200px;
+    height: 400px;
     bottom: 0;
     color: white;
     font-size: 18px;
@@ -24,6 +23,7 @@
     }
     &-contact {
         padding: 0 9%;
+        font-weight: bold;
     }
     .p-grid {
         height: 33.33%;

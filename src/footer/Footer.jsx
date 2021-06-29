@@ -2,7 +2,7 @@
 function Footer() {
   return (
 
-    <div className="footer">
+    <div className="footer background-footer">
       <div className="footer-logo p-grid text-center">
       </div>
       <div className="p-grid footer-social-media p-align-center">

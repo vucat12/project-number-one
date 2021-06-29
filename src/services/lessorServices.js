@@ -28,6 +28,28 @@ export const LessorService =  {
         method: 'get',
         url: `${environment}/get-data-post?link=${link}`
       }).then((res => res))
+    },
+        
+    getRatePercentByProvince(province) {
+      return axios({
+        headers: { 'Content-Type': 'application/json'},
+        method: 'get',
+        url: `${environment}/lessor/value-search-province?province=${province}`
+      }).then((res => res))
+    },
+
+    getPriceByProvince(province) {
+      let valueProvince;
+      if(province === 'All') valueProvince=undefined
+      else valueProvince = province; 
+
+      return axios({
+        headers: { 'Content-Type': 'application/json'},
+        method: 'get',
+        url: `${environment}/lessor/price-data`,
+        params:{ province: valueProvince ? valueProvince : undefined }
+      }).then((res => res))
     }
+
 }
 

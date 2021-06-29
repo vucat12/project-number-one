@@ -36,8 +36,8 @@ function Routing() {
           <Route path="/tenant-page">
             <TenantPage/>
           </Route>
-          <Route path="/edit">
-            <div style={{textAlign: 'center', padding: '32px', textTransform: 'uppercase', color: 'red'}}>
+          <Route path="/comming-soon">
+            <div style={{textAlign: 'center', padding: '100px 32px', textTransform: 'uppercase', color: 'red'}}>
              <h2>It will be coming soon.</h2> 
             </div>
           </Route>
@@ -59,7 +59,6 @@ function Routing() {
           <Route path="/view-chart-tenant">
             <ViewChartTentant/>
           </Route>
-
           <Redirect to="/home" />
     </Switch>
   );
