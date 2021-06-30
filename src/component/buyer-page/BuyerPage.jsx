@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Chart } from 'primereact/chart';
 import './BuyerPage.scss';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from "primereact/button";
 import Dropdown from 'react-dropdown';
 import {Price} from '../init-default/price';
-import { Area, areaSelected } from "../init-default/area";
+import { areaSelected } from "../init-default/area";
 import { getProvincesVN } from "../home-page/model/provinces";
 import { useHistory } from "react-router";
 import { BuyerService } from "../../services/buyerServices";
@@ -22,8 +21,6 @@ function BuyerPage() {
     const [searchPrice, setSearch] = useState({priceValue: '', idPrice: ''});
     const [searchArea, setSearchArea] = useState({areaValue: '', idArea: ''});
     const [searchProvince, setSearchProvince] = useState('');
-    const [dataCircle, setDataCircle] = useState([]);
-    const [dataLine, setDataLine] = useState([]);
     const [searchDistrict, setDistrict] = useState('');
     const [listOptionsDistrict, setOptionsDistrict] = useState('');
 
@@ -52,8 +49,6 @@ function BuyerPage() {
         }
 
         getHouse(dataState?.priceValue, dataState?.area, dataState?.province, dataState?.district);
-
-        getRatePercent();
     }, []);
 
     const getHouse = (idPrice, area, province, district) => {
@@ -68,89 +63,6 @@ function BuyerPage() {
         });
     }
 
-    const getRatePercent = async() => {
-        let response = {dataCircle: [], dataLine: []};
-        await productService.getRatePercent().then((res) => {
-            response.dataLine = res.sumHouses.map(el => el);
-            response.dataCircle = res.dataPercent.map(el => el);
-        });
-        setDataCircle(response.dataCircle);
-        setDataLine(response.dataLine)
-    }
-
-    let chartData = {
-        labels: Area,
-        datasets: [
-            {
-                data: dataCircle,
-                backgroundColor: [
-                    "#FF6384",
-                    "#36A2EE",
-                    "#FFCCCC",
-                    "#FF63FF",
-                    "#36ACCC",
-                    "#FFCEAA",
-                    "#FF6312",
-                    "#36A232",
-                    "#FFCEEE",
-                    "#FF6344",
-                    "#36A123",
-                    "#FFCE56",
-                ],
-                hoverBackgroundColor: [
-                    "#FF6384",
-                    "#36A2EE",
-                    "#FFCCCC",
-                    "#FF63FF",
-                    "#36ACCC",
-                    "#FFCEAA",
-                    "#FF6312",
-                    "#36A232",
-                    "#FFCEEE",
-                    "#FF6344",
-                    "#36A123",
-                    "#FFCE56",
-                ]
-            }]
-    };
-
-    const lightOptions = {
-        legend: {
-            labels: {
-                fontColor: '#495057'
-            }
-        }
-    };
-
-    const basicData = {
-        labels: Area,
-        datasets: [
-            {
-                label: 'Số lượng nhà',
-                backgroundColor: '#FF6384',
-                data: dataLine,
-            },
-        ]
-    };
-    let basicOptions = {
-        legend: {
-            labels: {
-                fontColor: '#495057'
-            }
-        },
-        scales: {
-            xAxes: [{
-                ticks: {
-                    fontColor: '#495057'
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    fontColor: '#495057'
-                }
-            }]
-        }
-    };
     const imageBodyTemplate = (rowData) => {
         return <img src={rowData.imageInf} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />;
     }
@@ -205,17 +117,6 @@ function BuyerPage() {
                 <Column field="addressInf" header="Địa chỉ" sortable></Column>
             </DataTable>
             </div>
-        <div className="view-chart-title">
-            Thông tin biểu đồ về thị trường bất động sản Việt Nam
-        </div>
-        <div className="card">
-                <h5>Biểu đồ tròn diện tích đất cần bán (% m2)</h5>
-                <Chart width="519px" height="600px" type="pie" data={chartData} options={lightOptions} />
-        </div>
-        <div className="card" style={{paddingTop: '32px'}}>
-            <h5>Biểu đồ ngang dữ liệu cụ thể (Toàn quốc)</h5>
-            <Chart width="1000px" height="600px" type="horizontalBar" data={basicData} options={basicOptions} />
-        </div>
       </div>
  
   );

@@ -34,25 +34,25 @@ function TopNav() {
        items: [
          {
             label:'Nhà đất cần bán',
-            icon:'pi pi-fw pi-sort-alt',
+            icon:'pi pi-fw pi-minus-circle',
             id: 11,
             command: (event) => callTopNav(event),
          },
          {
             label:'Nhà đất cần mua',
-            icon:'pi pi-fw pi-sort-alt',
+            icon:'pi pi-fw pi-money-bill',
             id: 12,
             command: (event) => callTopNav(event),
          },
          {
             label:'Nhà đất cho thuê',
-            icon:'pi pi-fw pi-sort-alt',
+            icon:'pi pi-fw pi-moon',
             id: 13,
             command: (event) => callTopNav(event),
          },
          {
             label:'Nhà đất cần thuê',
-            icon:'pi pi-fw pi-sort-alt',
+            icon:'pi pi-fw pi-palette',
             id: 14,
             command: (event) => callTopNav(event),
          },

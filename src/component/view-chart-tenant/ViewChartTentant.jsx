@@ -85,7 +85,7 @@ function ViewChartTentant() {
         labels: Area,
         datasets: [
             {
-                label: 'Số lượng nhà',
+                label: 'Số lượng nhà (m2)',
                 backgroundColor: '#FF6384',
                 data: dataLine,
             },
@@ -138,7 +138,7 @@ function ViewChartTentant() {
         labels: labelPrice,
         datasets: [
             {
-                label: 'Số lượng nhà',
+                label: 'Số lượng nhà (tỷ)',
                 backgroundColor: '#FF6384',
                 data: dataLine,
             },
@@ -205,7 +205,7 @@ function ViewChartTentant() {
         {
             isTypeChart && <div>
                 <div className="card">
-                <h5>Biểu đồ tròn diện tích đất cần bán (% m2)</h5>
+                <h4>Biểu đồ tròn diện tích đất cần thuê (% m2)</h4>
                 <Chart width="600px" height="600px" type="pie" data={chartData} options={lightOptions} />
                 </div>
                 <div className="card" style={{paddingTop: '32px'}}>
@@ -222,7 +222,7 @@ function ViewChartTentant() {
                 </div>
                 <div className="card" style={{paddingTop: '32px'}}>
                     <h5>Biểu đồ ngang dữ liệu giá cụ thể (Toàn quốc)</h5>
-                    <Chart width="600px" height="600px" type="horizontalBar" data={basicDataPrice} options={basicOptions} />
+                    <Chart width="500px" height="500px" type="horizontalBar" data={basicDataPrice} options={basicOptions} />
                 </div>
             </div>
         }
