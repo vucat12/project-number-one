@@ -88,28 +88,30 @@ function ViewChartBuyer() {
                     "#36A2EE",
                     "#FFCCCC",
                     "#FF63FF",
-                    "#36ACCC",
+                    "#33FF33",
                     "#FFCEAA",
                     "#FF6312",
                     "#36A232",
-                    "#FFCEEE",
-                    "#FF6344",
-                    "#36A123",
+                    "#FFCCFF",
+                    "#FF0000",
+                    "#0000EE",
                     "#FFCE56",
+                    "#666666"
                 ],
                 hoverBackgroundColor: [
                     "#FF6384",
                     "#36A2EE",
                     "#FFCCCC",
                     "#FF63FF",
-                    "#36ACCC",
+                    "#33FF33",
                     "#FFCEAA",
                     "#FF6312",
                     "#36A232",
-                    "#FFCEEE",
-                    "#FF6344",
-                    "#36A123",
+                    "#FFCCFF",
+                    "#FF0000",
+                    "#0000EE",
                     "#FFCE56",
+                    "#666666"
                 ]
             }]
     };
@@ -123,14 +125,14 @@ function ViewChartBuyer() {
                     "#36A232",
                     "#FFCEEE",
                     "#FF6344",
-                    "#36A123",
+                    "#0099FF",
                     "#FFCE56",
                 ],
                 hoverBackgroundColor: [
                     "#36A232",
                     "#FFCEEE",
                     "#FF6344",
-                    "#36A123",
+                    "#0099FF",
                     "#FFCE56",
                 ]
             }]
@@ -151,7 +153,7 @@ function ViewChartBuyer() {
         datasets: [
             {
                 label: 'Số lượng nhà (m2)',
-                backgroundColor: '#FF6384',
+                backgroundColor: '#3300CC',
                 data: dataLine,
             },
         ]
@@ -161,7 +163,7 @@ function ViewChartBuyer() {
         datasets: [
             {
                 label: 'Số lượng nhà (tỷ)',
-                backgroundColor: '#FF6384',
+                backgroundColor: '#3300CC',
                 data: dataLine,
             },
         ]
