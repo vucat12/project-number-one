@@ -206,7 +206,7 @@ function ViewChartSeller() {
                 <Chart width="600px" height="600px" type="pie" data={chartData} options={lightOptions} />
                 </div>
                 <div className="card" style={{paddingTop: '32px'}}>
-                    <h5>Biểu đồ ngang dữ liệu diện tích cụ thể (Toàn quốc)</h5>
+                    <h5>Biểu đồ ngang dữ liệu diện tích cụ thể</h5>
                     <Chart width="1000px" height="600px" type="horizontalBar" data={basicData} options={basicOptions} />
                 </div>
             </div>
@@ -218,7 +218,7 @@ function ViewChartSeller() {
                 <Chart width="600px" height="600px" type="pie" data={chartDataPrice} options={lightOptions} />
                 </div>
                 <div className="card" style={{paddingTop: '32px'}}>
-                    <h5>Biểu đồ ngang dữ liệu giá cụ thể (Toàn quốc)</h5>
+                    <h5>Biểu đồ ngang dữ liệu giá cụ thể</h5>
                     <div>
                         <Chart width="500px" height="500px" type="horizontalBar" data={basicDataPrice} options={basicOptions} />
                     </div>
