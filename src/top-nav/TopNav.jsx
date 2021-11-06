@@ -23,7 +23,7 @@ function TopNav() {
        command: (event) => callTopNav(event),
     },
     {
-       label:'Dự án',
+       label:'Biểu đồ dự đoán tăng trưởng',
        icon:'pi pi-fw pi-flag',
        id: 2,
        command: (event) => callTopNav(event),
@@ -117,7 +117,7 @@ const callTopNav = (event) => {
          history.push("/home");
          break;
       case 2: 
-         history.push("/comming-soon");
+         history.push("/guessing-chart");
          break;
      
       case 5: 
