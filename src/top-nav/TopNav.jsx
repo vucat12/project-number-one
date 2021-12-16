@@ -25,8 +25,20 @@ function TopNav() {
     {
        label:'Biểu đồ dự đoán tăng trưởng',
        icon:'pi pi-fw pi-flag',
-       id: 2,
-       command: (event) => callTopNav(event),
+       items: [
+         {
+            label: 'Nhà đất cần bán',
+            icon:'pi pi-fw pi-minus-circle',
+            id: 3,
+            command: (event) => callTopNav(event),
+         },
+         {
+            label:'Nhà đất cho thuê',
+            icon:'pi pi-fw pi-money-bill',
+            id: 4,
+            command: (event) => callTopNav(event),
+         },
+       ]
     },
     {
        label:'Thông tin biểu đồ',
@@ -116,10 +128,9 @@ const callTopNav = (event) => {
       case 1:
          history.push("/home");
          break;
-      case 2: 
+      case 3: 
          history.push("/guessing-chart");
          break;
-     
       case 5: 
          history.push("/seller-page");
          break;
