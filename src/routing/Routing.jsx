@@ -13,6 +13,7 @@ import ViewChartBuyer from "../component/view-chart-buyer/ViewChartBuyer";
 import ViewChartLessor from "../component/view-chart-lessor/ViewChartLessor";
 import ViewChartTentant from "../component/view-chart-tenant/ViewChartTentant";
 import GuessingChartSeller from "../component/guessing-chart-seller/GuessingChartSeller";
+import GuessingChartLessor from "../component/guessing-chart-lessor/GuessingChartLessor";
 
 function Routing() {
   const location = useLocation();
@@ -60,8 +61,11 @@ function Routing() {
           <Route path="/view-chart-tenant">
             <ViewChartTentant/>
           </Route>
-          <Route path="/guessing-chart">
+          <Route path="/guessing-seller-chart">
             <GuessingChartSeller/>
+          </Route>
+          <Route path="/guessing-lessor-chart">
+            <GuessingChartLessor/>
           </Route>
           <Redirect to="/home" />
     </Switch>

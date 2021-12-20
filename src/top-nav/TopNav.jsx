@@ -129,7 +129,10 @@ const callTopNav = (event) => {
          history.push("/home");
          break;
       case 3: 
-         history.push("/guessing-chart");
+         history.push("/guessing-seller-chart");
+         break;
+      case 4:
+         history.push("/guessing-lessor-chart")
          break;
       case 5: 
          history.push("/seller-page");

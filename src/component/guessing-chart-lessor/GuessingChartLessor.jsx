@@ -4,7 +4,7 @@ import { PriceServices } from "../../services/priceServices";
 import { Button } from 'primereact/button';
 
 const priceServices = PriceServices
-export default function GuessingChartSeller() {
+export default function GuessingChartLessor() {
 
     const [valueDaNang, setValueDaNang] = useState([]);
     const [valueHoChiMinh, setValueHoChiMinh] = useState([]);
@@ -67,13 +67,13 @@ export default function GuessingChartSeller() {
     };
 
     useEffect(() => {
-        priceServices.getSellerPriceByProvince("Đà Nẵng").then(res => {
+        priceServices.getLessorPriceByProvince("Đà Nẵng").then(res => {
             setValueDaNang(res);
         })
-        priceServices.getSellerPriceByProvince("Hồ Chí Minh").then(res => {
+        priceServices.getLessorPriceByProvince("Hồ Chí Minh").then(res => {
             setValueHoChiMinh(res)
         })
-        priceServices.getSellerPriceByProvince("Hà Nội").then(res => {
+        priceServices.getLessorPriceByProvince("Hà Nội").then(res => {
             setValueHaNoi(res)
         })
     }, []);
@@ -81,7 +81,7 @@ export default function GuessingChartSeller() {
     return (
         <div className="guessing-chart">
         <div className="view-chart-title" style={{fontSize: '20px', textTransform: 'uppercase'}}>
-            Thông tin biểu đồ về tăng trưởng bất động sản (triệu / m2)
+            Thông tin biểu đồ về tăng trưởng bất động sản (ngàn / m2)
         </div>
         <div>
             {/* <Button label="Xem thông tin chi tiết thành phố" /> */}
