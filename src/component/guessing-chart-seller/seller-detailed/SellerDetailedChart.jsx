@@ -96,7 +96,7 @@ export default function SellerDetailedChart() {
                         tension: .4
                     })
                 })
-                if(index === DaNang.length-1) {
+                if(index === HoChiMinh.length-1) {
                     setValueDetailed(valueChart)
                 }
             })
@@ -114,8 +114,10 @@ export default function SellerDetailedChart() {
             Thông tin biểu đồ về tăng trưởng bất động sản (triệu / m2)
         </div>
         <div className="chart-center">
+            {loading == valueDetailed.length && 
             <Chart type="line" data={basicData} options={basicOptions} height="600px" width="1200px"/>
-        </div>
+            }
+            </div>
         </div>
     )
 }

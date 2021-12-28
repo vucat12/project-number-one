@@ -9,6 +9,7 @@ export default function LessorDetailedChart() {
     const [valueDetailed, setValueDetailed] = useState([]);
     const priceServices = PriceServices
     const history = useHistory();
+    const [loading, setLoading] = useState(null);
 
     let basicData = {
         labels: ['25/10/2021','1/11/2021','8/11/2021','15/11/2021','19/11/2021', 'Tương Lai'],
@@ -48,6 +49,7 @@ export default function LessorDetailedChart() {
         let dataState = history.location.state;
         let valueChart = [];
         if(dataState?.province == "Hà Nội") {
+            setLoading(HaNoi.length)
             HaNoi.forEach(async (el, index) => {
                 await priceServices.getLessorPriceByProvince("Hà Nội", el).then(res => {
                     valueChart.push({
@@ -66,6 +68,7 @@ export default function LessorDetailedChart() {
             })
         } 
         else if(dataState?.province == "Đà Nẵng") {
+            setLoading(DaNang.length)
             DaNang.forEach(async (el, index) => {
                 await priceServices.getLessorPriceByProvince("Đà Nẵng", el).then(res => {
                     valueChart.push({
@@ -82,6 +85,7 @@ export default function LessorDetailedChart() {
             })
         } 
         else if(dataState?.province == "Hồ Chí Minh") {
+            setLoading(HoChiMinh.length)
             HoChiMinh.forEach(async (el, index) => {
                 await priceServices.getLessorPriceByProvince("Hồ Chí Minh", el).then(res => {
                     valueChart.push({
@@ -92,7 +96,7 @@ export default function LessorDetailedChart() {
                         tension: .4
                     })
                 })
-                if(index === DaNang.length-1) {
+                if(index === HoChiMinh.length-1) {
                     setValueDetailed(valueChart)
                 }
             })
@@ -110,7 +114,7 @@ export default function LessorDetailedChart() {
             Thông tin biểu đồ về tăng trưởng bất động sản (triệu / m2)
         </div>
         <div className="chart-center">
-            {valueDetailed.length > 0 && <Chart type="line" data={basicData} options={basicOptions} height="600px" width="1200px"/> }
+            {loading == valueDetailed.length && <Chart type="line" data={basicData} options={basicOptions} height="600px" width="1200px"/> }
         </div>
         </div>
     )
