@@ -2,10 +2,11 @@ import { Chart } from 'primereact/chart'
 import React, { useEffect, useState } from 'react'
 import { PriceServices } from "../../services/priceServices";
 import { Button } from 'primereact/button';
+import { useHistory } from "react-router";
 
 const priceServices = PriceServices
 export default function GuessingChartLessor() {
-
+    const routing = useHistory();
     const [valueDaNang, setValueDaNang] = useState([]);
     const [valueHoChiMinh, setValueHoChiMinh] = useState([]);
     const [valueHaNoi, setValueHaNoi] = useState([]);
@@ -84,9 +85,9 @@ export default function GuessingChartLessor() {
             Thông tin biểu đồ về tăng trưởng bất động sản (ngàn / m2)
         </div>
         <div className="text-align-center mb-3">
-            <Button label="Xem thông tin chi tiết thành phố Hà Nội" />
-            <Button className="mr-4 ml-4" label="Xem thông tin chi tiết thành phố Đà Nẵng" />
-            <Button label="Xem thông tin chi tiết thành phố Hồ Chí Minh" />
+            <Button onClick={() => routing.push({pathname: '/detailed/guessing-lessor-chart', state: {province: 'Hà Nội'}})} label="Xem thông tin chi tiết thành phố Hà Nội" />
+            <Button onClick={() => routing.push({pathname: '/detailed/guessing-lessor-chart', state: {province: 'Đà Nẵng'}})} className="mr-4 ml-4" label="Xem thông tin chi tiết thành phố Đà Nẵng" />
+            <Button onClick={() => routing.push({pathname: '/detailed/guessing-lessor-chart', state: {province: 'Hồ Chí Minh'}})} label="Xem thông tin chi tiết thành phố Hồ Chí Minh" />
         </div>
         <div className="chart-center">
         <Chart type="line" data={basicData} options={basicOptions} height="600px" width="1200px"/>

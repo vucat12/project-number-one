@@ -1,4 +1,4 @@
-export const HaNoi = ['Tây Hồ', 'Long Biên', 'Cầu Giấy', 'Đống Đa', 'Hai Bà Trưng', 'Hoàng Mai', 'Thanh Xuân', 'Nam Từ Liêm']
+export const HaNoi = ['Tây Hồ', 'Long Biên', 'Cầu Giấy', 'Đống Đa', 'Hai Bà Trưng', 'Hoàng Mai', 'Thanh Xuân']
 
 export const HoChiMinh = ['Quận 1', 'Quận 12', 'Gò Vấp', 'Tân Phú', 'Quận 7', 'Huyện Bình Chánh', 'Huyện Củ Chi']
 

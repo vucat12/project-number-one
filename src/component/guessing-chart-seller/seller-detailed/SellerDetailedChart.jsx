@@ -8,8 +8,9 @@ export default function SellerDetailedChart() {
     const [valueDetailed, setValueDetailed] = useState([]);
     const priceServices = PriceServices
     const history = useHistory();
+    const [loading, setLoading] = useState(null);
 
-    let basicData = {
+    const basicData = {
         labels: ['25/10/2021','1/11/2021','8/11/2021','15/11/2021','19/11/2021', 'Tương Lai'],
         datasets: valueDetailed
     };
@@ -47,6 +48,7 @@ export default function SellerDetailedChart() {
         let dataState = history.location.state;
         let valueChart = [];
         if(dataState?.province == "Hà Nội") {
+            setLoading(HaNoi.length)
             HaNoi.forEach(async (el, index) => {
                 await priceServices.getSellerPriceByProvince("Hà Nội", el).then(res => {
                     valueChart.push({
@@ -59,13 +61,13 @@ export default function SellerDetailedChart() {
                 })
 
                 if(index === HaNoi.length-1) {
-                    console.log(valueChart);
                     setValueDetailed(valueChart)
                 }
 
             })
         } 
         else if(dataState?.province == "Đà Nẵng") {
+            setLoading(DaNang.length)
             DaNang.forEach(async (el, index) => {
                 await priceServices.getSellerPriceByProvince("Đà Nẵng", el).then(res => {
                     valueChart.push({
@@ -76,12 +78,14 @@ export default function SellerDetailedChart() {
                         tension: .4
                     })
                 })
+                
                 if(index === DaNang.length-1) {
                     setValueDetailed(valueChart)
                 }
             })
         } 
         else if(dataState?.province == "Hồ Chí Minh") {
+            setLoading(HoChiMinh.length)
             HoChiMinh.forEach(async (el, index) => {
                 await priceServices.getSellerPriceByProvince("Hồ Chí Minh", el).then(res => {
                     valueChart.push({
@@ -110,7 +114,7 @@ export default function SellerDetailedChart() {
             Thông tin biểu đồ về tăng trưởng bất động sản (triệu / m2)
         </div>
         <div className="chart-center">
-        <Chart type="line" data={basicData} options={basicOptions} height="600px" width="1200px"/>
+            <Chart type="line" data={basicData} options={basicOptions} height="600px" width="1200px"/>
         </div>
         </div>
     )
