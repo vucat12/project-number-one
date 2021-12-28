@@ -5,13 +5,13 @@ export const HoChiMinh = ['Quận 1', 'Quận 12', 'Gò Vấp', 'Tân Phú', 'Qu
 export const DaNang = ['Liên Chiểu', 'Thanh Khê', 'Hải Châu', 'Sơn Trà', 'Ngũ Hành Sơn', 'Cẩm Lệ']
 
 export const listColor = [
-    "#FF6384",
-    "#36A2EE",
-    "#FFCCCC",
-    "#FF63FF",
-    "#33FF33",
-    "#FFCEAA",
-    "#FF6312",
+    "#ff0000",
+    "#e6e600",
+    "#ff6600",
+    "#e600e6",
+    "#00cc00",
+    "#1a75ff",
+    "#000000",
     "#36A232",
     "#FFCCFF",
     "#FF0000",
