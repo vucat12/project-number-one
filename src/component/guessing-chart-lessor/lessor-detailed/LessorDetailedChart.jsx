@@ -1,6 +1,7 @@
 import { Chart } from 'primereact/chart'
 import React, { useEffect, useState } from 'react'
-import { HaNoi, HoChiMinh, DaNang, listColor } from "../../init-default/guessingDistrict";
+import { listColor } from "../../init-default/guessingDistrict";
+import { HaNoi, HoChiMinh, DaNang } from "../../init-default/guessingDistrictLessor";
 import { PriceServices } from '../../../services/priceServices';
 import { useHistory } from "react-router";
 
