@@ -19,7 +19,7 @@ export default function GuessingChartSeller() {
                 data: valueDaNang,
                 fill: false,
                 borderColor: '#42A5F5',
-                tension: .4
+                tension: .4,
             },
             {
                 label: 'Hồ Chí Minh',
@@ -45,7 +45,7 @@ export default function GuessingChartSeller() {
                 labels: {
                     color: '#495057'
                 }
-            }
+            },
         },
         scales: {
             x: {

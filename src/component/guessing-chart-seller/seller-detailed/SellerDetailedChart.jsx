@@ -22,7 +22,11 @@ export default function SellerDetailedChart() {
                 labels: {
                     color: '#495057'
                 }
-            }
+            },
+            
+        },
+        legend: {
+            position: 'right',
         },
         scales: {
             x: {
