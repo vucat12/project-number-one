@@ -115,7 +115,7 @@ export default function SellerDetailedChart() {
     return (
         <div className="guessing-chart">
         <div className="view-chart-title" style={{fontSize: '20px', textTransform: 'uppercase'}}>
-            Thông tin biểu đồ về tăng trưởng bất động sản (triệu / m2)
+            Thông tin biểu đồ về tăng trưởng bất động sản {history.location.state?.province} (triệu / m2)
         </div>
         <div className="chart-center">
             {loading == valueDetailed.length && 

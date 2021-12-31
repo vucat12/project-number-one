@@ -114,7 +114,7 @@ export default function LessorDetailedChart() {
     return (
         <div className="guessing-chart">
         <div className="view-chart-title" style={{fontSize: '20px', textTransform: 'uppercase'}}>
-            Thông tin biểu đồ về tăng trưởng bất động sản (triệu / m2)
+            Thông tin biểu đồ về tăng trưởng bất động sản {history.location.state?.province} (ngàn / m2)
         </div>
         <div className="chart-center">
             {loading == valueDetailed.length && <Chart type="line" data={basicData} options={basicOptions} height="600px" width="1200px"/> }
