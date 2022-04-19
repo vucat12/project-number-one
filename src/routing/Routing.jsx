@@ -16,6 +16,7 @@ import GuessingChartSeller from "../component/guessing-chart-seller/GuessingChar
 import GuessingChartLessor from "../component/guessing-chart-lessor/GuessingChartLessor";
 import SellerDetailedChart from "../component/guessing-chart-seller/seller-detailed/SellerDetailedChart";
 import LessorDetailedChart from "../component/guessing-chart-lessor/lessor-detailed/LessorDetailedChart";
+import AiSellerPage from "../component/ai-seller-page/AiSellerPage";
 
 function Routing() {
   const location = useLocation();
@@ -74,6 +75,9 @@ function Routing() {
           </Route>
           <Route path="/detailed/guessing-lessor-chart">
             <LessorDetailedChart/>
+          </Route>
+          <Route path="/ai/seller-page">
+            <AiSellerPage/>
           </Route>
           <Redirect to="/home" />
     </Switch>

@@ -17,11 +17,17 @@ function TopNav() {
        id: 1,
     },
     {
-       label:'Tin tức',
-       icon:'pi pi-fw pi-folder',
-       id: 2,
-       command: (event) => callTopNav(event),
-    },
+      label:'Trí tuệ nhân tạo dự đoán giá',
+      icon:'pi pi-fw pi-flag',
+      items: [
+        {
+           label: 'Nhà đất cần bán',
+           icon:'pi pi-fw pi-minus-circle',
+           id: 2,
+           command: (event) => callTopNav(event),
+        },
+      ]
+   },
     {
        label:'Biểu đồ dự đoán tăng trưởng',
        icon:'pi pi-fw pi-flag',
@@ -127,6 +133,9 @@ const callTopNav = (event) => {
    switch (event.item.id) {
       case 1:
          history.push("/home");
+         break;
+      case 2:
+         history.push("/ai/seller-page");
          break;
       case 3: 
          history.push("/guessing-seller-chart");
