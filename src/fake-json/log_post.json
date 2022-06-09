@@ -1,0 +1,9 @@
+{
+    "user_id": "",
+    "object_id": "", // id bài viết trong mongo 
+    "province": "",
+    "district": "",
+    "ward": "",
+    "price": "",
+    "squad": ""
+}

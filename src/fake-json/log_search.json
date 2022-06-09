@@ -1,0 +1,9 @@
+{
+    "user_id": "", 
+    "tpye_seach": "",  // can mua, can ban, cho thue,...
+    "province_search":"",
+    "district_search": "",
+    "ward_search":"",
+    "price_search": "",
+    "squad_search": ""
+}

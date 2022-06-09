@@ -1,0 +1,21 @@
+{
+    "user_id" : "",
+    "post suggestions": [
+        {
+            "post_type": "Cần bán",
+            "price_info": "1 tỷ",
+            "squad_info": "30 - 40 m2",
+            "province_info": "HCM",
+            "district_info": "Tân Bình",
+            "ward_info": "Phường 12"
+        },
+        {
+            "post_type": "Cần mua",
+            "price_info": "2 - 3 tỷ",
+            "squad_info": "50 - 60 m2",
+            "province_info": "HCM",
+            "district_info": "Bình Thạnh",
+            "ward_info": "Phường 8"
+        }
+    ]
+}

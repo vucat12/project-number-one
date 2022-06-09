@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import {Switch,Route,Redirect } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "../component/home-page/HomePage";
 import SellerPage from "../component/seller-page/SellerPage";
-import LogIn from "../component/log-in/LogIn"
+import LogIn from "../component/log-in/LogIn";
 import ViewPost from "../component/home-page/ViewPost/ViewPost";
 import { useLocation } from "react-router";
 import BuyerPage from "../component/buyer-page/BuyerPage";
@@ -17,6 +17,10 @@ import GuessingChartLessor from "../component/guessing-chart-lessor/GuessingChar
 import SellerDetailedChart from "../component/guessing-chart-seller/seller-detailed/SellerDetailedChart";
 import LessorDetailedChart from "../component/guessing-chart-lessor/lessor-detailed/LessorDetailedChart";
 import AiSellerPage from "../component/ai-seller-page/AiSellerPage";
+import UserManagement from "../component/user-management/UserManagement";
+import EditUser from "../component/user-management/edit-user/EditUser";
+import ViewUser from "../component/user-management/view-user/ViewUser";
+import SearchingHistory from "../component/user-management/searching-history/SearchingHistory";
 
 function Routing() {
   const location = useLocation();
@@ -26,60 +30,79 @@ function Routing() {
   }, [location]);
   return (
     <Switch>
-          <Route path="/home">
-             <HomePage /> 
-          </Route>
-          <Route path="/seller-page">
-            <SellerPage/>
-          </Route>
-          <Route path="/buyer-page">
-            <BuyerPage/>
-          </Route>
-          <Route path="/lessor-page">
-            <LessorPage/>
-          </Route>
-          <Route path="/tenant-page">
-            <TenantPage/>
-          </Route>
-          <Route path="/comming-soon">
-            <div style={{textAlign: 'center', padding: '100px 32px', textTransform: 'uppercase', color: 'red'}}>
-             <h2>It will be coming soon.</h2> 
-            </div>
-          </Route>
-          <Route path="/login">
-            <LogIn/>
-          </Route>
-          <Route path="/view-post">
-            <ViewPost/>
-          </Route>
-          <Route path="/view-chart-seller">
-            <ViewChartSeller/>
-          </Route>
-          <Route path="/view-chart-buyer">
-            <ViewChartBuyer/>
-          </Route>
-          <Route path="/view-chart-lessor">
-            <ViewChartLessor/>
-          </Route>
-          <Route path="/view-chart-tenant">
-            <ViewChartTentant/>
-          </Route>
-          <Route path="/guessing-seller-chart">
-            <GuessingChartSeller/>
-          </Route>
-          <Route path="/guessing-lessor-chart">
-            <GuessingChartLessor/>
-          </Route>
-          <Route path="/detailed/guessing-seller-chart">
-            <SellerDetailedChart/>
-          </Route>
-          <Route path="/detailed/guessing-lessor-chart">
-            <LessorDetailedChart/>
-          </Route>
-          <Route path="/ai/seller-page">
-            <AiSellerPage/>
-          </Route>
-          <Redirect to="/home" />
+      <Route path="/home">
+        <HomePage />
+      </Route>
+      <Route path="/seller-page">
+        <SellerPage />
+      </Route>
+      <Route path="/buyer-page">
+        <BuyerPage />
+      </Route>
+      <Route path="/lessor-page">
+        <LessorPage />
+      </Route>
+      <Route path="/tenant-page">
+        <TenantPage />
+      </Route>
+      <Route path="/comming-soon">
+        <div
+          style={{
+            textAlign: "center",
+            padding: "100px 32px",
+            textTransform: "uppercase",
+            color: "red",
+          }}
+        >
+          <h2>It will be coming soon.</h2>
+        </div>
+      </Route>
+      <Route path="/login">
+        <LogIn />
+      </Route>
+      <Route path="/view-post">
+        <ViewPost />
+      </Route>
+      <Route path="/view-chart-seller">
+        <ViewChartSeller />
+      </Route>
+      <Route path="/view-chart-buyer">
+        <ViewChartBuyer />
+      </Route>
+      <Route path="/view-chart-lessor">
+        <ViewChartLessor />
+      </Route>
+      <Route path="/view-chart-tenant">
+        <ViewChartTentant />
+      </Route>
+      <Route path="/guessing-seller-chart">
+        <GuessingChartSeller />
+      </Route>
+      <Route path="/guessing-lessor-chart">
+        <GuessingChartLessor />
+      </Route>
+      <Route path="/detailed/guessing-seller-chart">
+        <SellerDetailedChart />
+      </Route>
+      <Route path="/detailed/guessing-lessor-chart">
+        <LessorDetailedChart />
+      </Route>
+      <Route path="/ai/seller-page">
+        <AiSellerPage />
+      </Route>
+      <Route path="/user-management">
+        <UserManagement />
+      </Route>
+      <Route path="/user/:id/edit">
+        <EditUser />
+      </Route>
+      <Route path="/user/:id/view">
+        <ViewUser />
+      </Route>
+      <Route path="/user/:id/history">
+        <SearchingHistory />
+      </Route>
+      <Redirect to="/home" />
     </Switch>
   );
 }
