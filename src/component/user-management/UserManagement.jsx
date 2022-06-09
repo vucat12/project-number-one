@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./UserManagement.scss";
 import { Tooltip } from "primereact/tooltip";
+import { UserServices } from "../../services/userServices";
 
 const data = [
   {
@@ -118,12 +119,21 @@ const data = [
   },
 ];
 
+const userService = UserServices;
+
 const UserManagement = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     setProducts(data);
+    getAllUsers();
   }, []);
+
+  const getAllUsers = () => {
+    userService.getAllUserManagement().then((res) => {
+      console.log(res);
+    });
+  };
 
   const renderAction = (rowData) => {
     return (
@@ -143,7 +153,7 @@ const UserManagement = () => {
           mouseTrack
           mouseTrackLeft={10}
         ></Tooltip>
-        <Link to={`/user/${rowData.id}/view`}>
+        <Link to={`/view-post`}>
           <i
             className="pi pi-eye mr-2 view-suggestion"
             style={{ fontSize: "1.5em", color: "#6F7BD9", cursor: "pointer" }}
