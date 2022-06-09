@@ -11,5 +11,13 @@
         text-align: center;
     }
   }
+  .flex {
+    display: flex;
+    place-content: space-around;
+    .card {
+      padding: 20px;
+      display: contents;
+    }
+  }
 }
 

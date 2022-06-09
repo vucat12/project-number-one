@@ -11,43 +11,18 @@ const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
 const aiService = AiService;
 
+const xPoint = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
 const AiSellerPage = () => {
   const [searchProvince, setSearchProvince] = useState("");
   const [searchDistrict, setDistrict] = useState("");
   const [listOptionsDistrict, setOptionsDistrict] = useState("");
+  const [yPoint, setYPoint] = useState([]);
 
   const [dataScatter, setDataScatter] = useState([
     {
-      x: -5,
-      y: 0,
-    },
-    {
       x: 0,
-      y: 10,
-    },
-    {
-      x: 10,
-      y: 20,
-    },
-    {
-      x: 0.5,
-      y: 5.5,
-    },
-    {
-      x: 1.5,
-      y: 30,
-    },
-    {
-      x: 2.5,
-      y: 5.5,
-    },
-    {
-      x: 2.5,
-      y: 3,
-    },
-    {
-      x: 4,
-      y: 4,
+      y: 0,
     },
   ]);
 
@@ -65,6 +40,8 @@ const AiSellerPage = () => {
       district: searchDistrict !== "All" ? searchDistrict : undefined,
     };
 
+    console.log(dataScatter);
+
     aiService.getListAreasAndPrices(data).then((res) => {
       const mapResponse = res.map((el) => {
         return {
@@ -73,14 +50,16 @@ const AiSellerPage = () => {
         };
       });
 
-      console.log(mapResponse);
-
       setDataScatter(mapResponse);
-      aiService.getAiGuessPrice(res).then((response) => console.log(response));
+      aiService
+        .getAiGuessPrice(res)
+        .then((response) =>
+          createRecipe(response.slope[0], response.intercept)
+        );
     });
   };
 
-  const [chartData] = useState({
+  let chartData = {
     datasets: [
       {
         label: "Scatter Chart",
@@ -88,20 +67,20 @@ const AiSellerPage = () => {
         backgroundColor: "rgb(255, 99, 132)",
       },
     ],
-  });
+  };
 
-  const [chartLine] = useState({
-    labels: [0, 10, 20, 30, 40, 50, 60],
+  const chartLine = {
+    labels: xPoint,
     datasets: [
       {
         label: "My First Dataset",
-        data: [0, 10, 20, 30, 40, 50, 60],
+        data: yPoint,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
       },
     ],
-  });
+  };
 
   const [lightOptions] = useState({
     plugins: {
@@ -144,6 +123,11 @@ const AiSellerPage = () => {
     },
   };
 
+  const createRecipe = (a, b) => {
+    const resultY = xPoint.map((el) => el * a + b);
+    setYPoint(resultY);
+  };
+
   return (
     <div className="ai-seller">
       <div className="search">
@@ -176,7 +160,7 @@ const AiSellerPage = () => {
             type="scatter"
             data={chartData}
             options={lightOptions}
-            style={{ position: "relative", width: "40%" }}
+            style={{ position: "relative", width: "45%" }}
           />
         </div>
         <div className="card">
@@ -184,7 +168,7 @@ const AiSellerPage = () => {
             type="line"
             data={chartLine}
             options={basicOptions}
-            style={{ position: "relative", width: "40%" }}
+            style={{ position: "relative", width: "45%" }}
           />
         </div>
       </div>
