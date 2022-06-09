@@ -6,7 +6,7 @@ export const AiService = {
     return axios({
       headers: { 'Content-Type': 'application/json' },
       method: 'post',
-      data: data,
+      data: {"list_real_estate": data},
       url: `${environment_v2}/guess-price/get-guess-price`,
     })
       .then((res) => res.data);
