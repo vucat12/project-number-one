@@ -1,10 +1,11 @@
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./UserManagement.scss";
 import { Tooltip } from "primereact/tooltip";
 import { UserServices } from "../../services/userServices";
+import { SellerService } from "../../services/sellerServices";
 
 const data = [
   {
@@ -120,9 +121,11 @@ const data = [
 ];
 
 const userService = UserServices;
+const productService = SellerService;
 
 const UserManagement = () => {
   const [products, setProducts] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     setProducts(data);
@@ -133,6 +136,15 @@ const UserManagement = () => {
     userService.getAllUserManagement().then((res) => {
       console.log(res);
     });
+  };
+
+  const handleViewPost = async () => {
+    let data = await productService
+      .getPostDetail(
+        "https://alonhadat.com.vn/chinh-chu-can-ban-nha-duong-so-16a-kp11-p-binh-hung-hoa-a-quan-binh-tan-hcm-6862518.html"
+      )
+      .then((res) => res.data[0]);
+    history.push("/view-post", { data: data });
   };
 
   const renderAction = (rowData) => {
@@ -153,14 +165,14 @@ const UserManagement = () => {
           mouseTrack
           mouseTrackLeft={10}
         ></Tooltip>
-        <Link to={`/view-post`}>
+        <a onClick={() => handleViewPost()}>
           <i
             className="pi pi-eye mr-2 view-suggestion"
             style={{ fontSize: "1.5em", color: "#6F7BD9", cursor: "pointer" }}
             data-pr-tooltip="View Suggestion"
             data-pr-position="right"
           ></i>
-        </Link>
+        </a>
 
         <Tooltip
           target=".searching-history"

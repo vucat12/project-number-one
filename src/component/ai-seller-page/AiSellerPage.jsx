@@ -6,6 +6,8 @@ import { AiService } from "../../services/aiServices";
 import Dropdown from "react-dropdown";
 import "./AiSellerPage.scss";
 import { Button } from "primereact/button";
+import { InputNumber } from "primereact/inputnumber";
+import { InputText } from "primereact/inputtext";
 
 const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
@@ -18,6 +20,13 @@ const AiSellerPage = () => {
   const [searchDistrict, setDistrict] = useState("");
   const [listOptionsDistrict, setOptionsDistrict] = useState("");
   const [yPoint, setYPoint] = useState([]);
+  const [xCoordinate, setXCoordinate] = useState();
+  const [yCoordinate, setYCoordinate] = useState();
+  const [recipe, setRecipe] = useState({
+    a: 0,
+    b: 0,
+    performance: 0,
+  });
 
   const [dataScatter, setDataScatter] = useState([
     {
@@ -39,9 +48,6 @@ const AiSellerPage = () => {
       province: searchProvince !== "All" ? searchProvince : undefined,
       district: searchDistrict !== "All" ? searchDistrict : undefined,
     };
-
-    console.log(dataScatter);
-
     aiService.getListAreasAndPrices(data).then((res) => {
       const mapResponse = res.map((el) => {
         return {
@@ -51,18 +57,23 @@ const AiSellerPage = () => {
       });
 
       setDataScatter(mapResponse);
-      aiService
-        .getAiGuessPrice(res)
-        .then((response) =>
-          createRecipe(response.slope[0], response.intercept)
-        );
+      aiService.getAiGuessPrice(res).then((response) => {
+        createRecipe(response.slope[0], response.intercept);
+        setRecipe({
+          a: response.slope[0],
+          b: response.intercept,
+          performance: response.delta,
+        });
+      });
     });
+    setXCoordinate();
+    setYCoordinate();
   };
 
   let chartData = {
     datasets: [
       {
-        label: "Scatter Chart",
+        label: "Tọa độ điểm",
         data: dataScatter,
         backgroundColor: "rgb(255, 99, 132)",
       },
@@ -73,7 +84,7 @@ const AiSellerPage = () => {
     labels: xPoint,
     datasets: [
       {
-        label: "My First Dataset",
+        label: "Đường thẳng dự đoán",
         data: yPoint,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
@@ -128,6 +139,22 @@ const AiSellerPage = () => {
     setYPoint(resultY);
   };
 
+  const handleYCoordinate = () => {
+    setYCoordinate(recipe.a * xCoordinate + recipe.b);
+  };
+
+  const countPerformance = (performance) => {
+    const result = performance / 1000000;
+    if (result < 0) {
+      return "Không xác định";
+    } else if (result > 0 && result < 100) return "Rất cao";
+    else if (result > 100 && result <= 200) return "Cao";
+    else if (result > 200 && result <= 300) return "Trung bình";
+    else if (result > 300 && result <= 400) return "Thấp";
+    else if (result > 400) return "Rất thấp";
+    return "Hiệu suất dự đoán";
+  };
+
   return (
     <div className="ai-seller">
       <div className="search">
@@ -140,7 +167,7 @@ const AiSellerPage = () => {
           placeholder="Tỉnh"
         />
         <Dropdown
-          className="Dropdown mr-3"
+          className="Dropdown Dropdown-district mr-3"
           options={listOptionsDistrict}
           onChange={(e) => setDistrict(e?.label)}
           value={searchDistrict}
@@ -153,6 +180,34 @@ const AiSellerPage = () => {
           label="Search"
           className="p-mr-2 ml-3"
         ></Button>
+      </div>
+      <div style={{ textAlign: "center" }} className="mb-2">
+        <div className="mb-2">
+          <InputText value={countPerformance(recipe.performance)} disabled />
+        </div>
+        <InputNumber
+          placeholder="Nhập diện tích"
+          disabled={!searchDistrict}
+          inputId="mile"
+          suffix=" m2"
+          value={xCoordinate}
+          onValueChange={(e) => setXCoordinate(e.value)}
+        />
+        <Button
+          disabled={!searchDistrict}
+          onClick={() => handleYCoordinate()}
+          label="Chuyển đổi"
+          className="p-mr-3 ml-3"
+        ></Button>
+        <InputNumber
+          placeholder="Kết quả"
+          disabled={!searchDistrict}
+          inputId="integeronly"
+          value={yCoordinate && yCoordinate * 1000000}
+          mode="currency"
+          currency="VND"
+          locale="de-DE"
+        />
       </div>
       <div className="flex">
         <div className="card">

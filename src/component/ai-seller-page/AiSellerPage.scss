@@ -4,7 +4,10 @@
     text-align: center;
     .Dropdown {
         height: 40px;
-        &-provinces {
+        &-district {
+          .Dropdown-control {
+            width: 200px;
+          }
         }
     }
     .result-found {

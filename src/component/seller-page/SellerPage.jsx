@@ -104,6 +104,7 @@ function SellerPage() {
   };
 
   const viewPostDetail = async (e) => {
+    console.log(e);
     let data = await productService
       .getPostDetail(e.data.linkPage)
       .then((res) => res.data[0]);

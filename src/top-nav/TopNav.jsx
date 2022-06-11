@@ -16,7 +16,7 @@ function TopNav() {
       id: 1,
     },
     {
-      label: "Trí tuệ nhân tạo dự đoán giá",
+      label: "Dự đoán giá nhà đất",
       icon: "pi pi-fw pi-flag",
       id: 2,
       command: (event) => callTopNav(event),
