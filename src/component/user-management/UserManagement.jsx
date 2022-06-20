@@ -6,135 +6,23 @@ import "./UserManagement.scss";
 import { Tooltip } from "primereact/tooltip";
 import { UserServices } from "../../services/userServices";
 import { SellerService } from "../../services/sellerServices";
-
-const data = [
-  {
-    id: 1,
-    name: "Nguyễn Công Hiếu",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 2,
-    name: "Vũ Cát",
-    email: "vucat12@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 3,
-    name: "Nguyễn Hoài Phong",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 4,
-    name: "Nguyễn Vũ Khánh",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 5,
-    name: "Nguyễn Lê Tấn Khoa",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 6,
-    name: "Nguyễn Đức Phúc",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 7,
-    name: "Bùi Đoàn Quang Tân",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 8,
-    name: "Trần Phú Thoại",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 9,
-    name: "Nguyễn Văn Đậu",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-  {
-    id: 10,
-    name: "Nguyễn Đình Hiếu",
-    email: "nguyenconghieu@gmail.com",
-    age: "18",
-    gender: "Nam",
-    address: "37 Nguyễn Văn Trỗi, Quận Phú Nhuận",
-    city: "Hồ Chí Minh",
-    country: "Việt Nam",
-    createdAt: "2020-01-01",
-  },
-];
+import { getProvincesVN } from "../home-page/model/provinces";
 
 const userService = UserServices;
 const productService = SellerService;
+const listProvinces = getProvincesVN();
 
 const UserManagement = () => {
-  const [products, setProducts] = useState([]);
+  const [listUsers, setListUsers] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
-    setProducts(data);
     getAllUsers();
   }, []);
 
   const getAllUsers = () => {
-    userService.getAllUserManagement().then((res) => {
-      console.log(res);
+    userService.getAllUsers().then((res) => {
+      setListUsers(res);
     });
   };
 
@@ -147,18 +35,22 @@ const UserManagement = () => {
     history.push("/view-post", { data: data });
   };
 
+  const handleEditUser = (user) => {
+    history.push(`/user/${user.id}/edit`, { user: user });
+  };
+
   const renderAction = (rowData) => {
     return (
       <>
         <Tooltip target=".edit-button" mouseTrack mouseTrackLeft={10}></Tooltip>
-        <Link to={`/user/${rowData.id}/edit`}>
+        <div onClick={() => handleEditUser(rowData)}>
           <i
             className="pi pi-user-edit mr-2 edit-button"
             style={{ fontSize: "1.5em", color: "#6F7BD9", cursor: "pointer" }}
             data-pr-tooltip="Edit User"
             data-pr-position="right"
           ></i>
-        </Link>
+        </div>
 
         <Tooltip
           target=".view-suggestion"
@@ -191,20 +83,35 @@ const UserManagement = () => {
     );
   };
 
+  const renderProvince = (rowData) => {
+    const province = listProvinces.find(
+      (el) => el.value === rowData.province_info
+    );
+
+    console.log(province);
+
+    return province?.label;
+  };
+
   return (
     <div className="user-management">
       <div className="title1 title" tooltip="Enter your username">
         User Management
       </div>
       <div className="card table-data">
-        <DataTable value={products} paginator rows={10}>
+        <DataTable value={listUsers} paginator rows={10}>
           <Column body={renderAction} header="Action"></Column>
-          <Column field="name" header="Name" sortable></Column>
+          <Column field="username" header="Username" sortable></Column>
           <Column field="email" header="Email" sortable></Column>
           <Column field="age" header="Age" sortable></Column>
           <Column field="gender" header="Gender" sortable></Column>
           <Column field="address" header="Address" sortable></Column>
-          <Column field="city" header="City" sortable></Column>
+          <Column
+            field="province"
+            body={renderProvince}
+            header="City"
+            sortable
+          ></Column>
           <Column field="country" header="Country" sortable></Column>
           <Column field="createdAt" header="Created At" sortable></Column>
         </DataTable>

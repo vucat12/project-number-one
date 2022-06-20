@@ -160,7 +160,7 @@ const AiSellerPage = () => {
       <div className="search">
         <div className="title mb-2">Tìm kiếm nơi cần dự đoán</div>
         <Dropdown
-          className="Dropdown Dropdown-provinces mr-3"
+          className="Dropdown Dropdown-district mr-3"
           options={listProvinces}
           onChange={(e) => handleChangeProvince(e)}
           value={searchProvince}
