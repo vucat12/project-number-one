@@ -109,6 +109,7 @@ function TopNav() {
 
   const logOut = () => {
     localStorage.removeItem("token_authen");
+    localStorage.removeItem("userId");
     history.push("/login");
   };
 
