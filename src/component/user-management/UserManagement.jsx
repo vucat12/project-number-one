@@ -32,8 +32,8 @@ const UserManagement = () => {
     });
   };
 
-  const handleViewPost = async (user) => {
-    recommendPostService.getRecommendPost(user.id).then((res) => {
+  const handleViewPost = async (user, type) => {
+    recommendPostService.getRecommendPost(user.id, type).then((res) => {
       const province = listProvinces.find(
         (el) => parseInt(el.value) == parseInt(res.province)
       );
@@ -46,10 +46,16 @@ const UserManagement = () => {
         area: res?.squad,
         price: res?.price,
       };
-      history.push({
-        pathname: "/seller-page",
-        state: { ...dataSearch },
-      });
+      if (type === 1)
+        history.push({
+          pathname: "/seller-page",
+          state: { ...dataSearch },
+        });
+      if (type === 2)
+        history.push({
+          pathname: "/lessor-page",
+          state: { ...dataSearch },
+        });
     });
   };
 
@@ -58,8 +64,7 @@ const UserManagement = () => {
   };
 
   const handleSearchingHistory = (user) => {
-    logSearchService.getLogSearch().then((res) => {
-      console.log(res);
+    logSearchService.getLogSearch(user.id).then((res) => {
       history.push(`/user/${user.id}/history`, { dataSource: res });
     });
   };
@@ -72,7 +77,7 @@ const UserManagement = () => {
           <i
             className="pi pi-user-edit mr-2 edit-button"
             style={{ fontSize: "1.5em", color: "#6F7BD9", cursor: "pointer" }}
-            data-pr-tooltip="Edit User"
+            data-pr-tooltip="Sửa thông tin người dùng"
             data-pr-position="right"
           ></i>
         </span>
@@ -82,15 +87,27 @@ const UserManagement = () => {
           mouseTrack
           mouseTrackLeft={10}
         ></Tooltip>
-        <span onClick={() => handleViewPost(rowData)}>
+        <span onClick={() => handleViewPost(rowData, 1)}>
           <i
             className="pi pi-eye mr-2 view-suggestion"
             style={{ fontSize: "1.5em", color: "#6F7BD9", cursor: "pointer" }}
-            data-pr-tooltip="View Suggestion"
+            data-pr-tooltip="Xem gợi ý cần bán"
             data-pr-position="right"
           ></i>
         </span>
-
+        <Tooltip
+          target=".view-suggestion"
+          mouseTrack
+          mouseTrackLeft={10}
+        ></Tooltip>
+        <span onClick={() => handleViewPost(rowData, 2)}>
+          <i
+            className="pi pi-bookmark mr-2 view-suggestion"
+            style={{ fontSize: "1.5em", color: "#6F7BD9", cursor: "pointer" }}
+            data-pr-tooltip="Xem gợi ý cho thuê"
+            data-pr-position="right"
+          ></i>
+        </span>
         <Tooltip
           target=".searching-history"
           mouseTrack
@@ -100,7 +117,7 @@ const UserManagement = () => {
           <i
             className="pi pi-search-plus searching-history"
             style={{ fontSize: "1.5em", color: "#6F7BD9", cursor: "pointer" }}
-            data-pr-tooltip="Searching History"
+            data-pr-tooltip="Xem lịch sử tìm kiếm"
             data-pr-position="right"
           ></i>
         </span>
@@ -113,6 +130,14 @@ const UserManagement = () => {
       (el) => el.value == rowData.province_info
     );
     return province?.label;
+  };
+
+  const renderDistrict = (rowData) => {
+    const district = listDistrict.find(
+      (el) => el.value == rowData.district_info
+    );
+
+    return district?.label;
   };
 
   return (
@@ -128,12 +153,22 @@ const UserManagement = () => {
           <Column field="gender" header="Gender" sortable></Column>
           <Column field="address" header="Address" sortable></Column>
           <Column
+            field="mobile_number"
+            header="Mobile Number"
+            sortable
+          ></Column>
+          <Column
             field="province"
             body={renderProvince}
             header="City"
             sortable
           ></Column>
-          <Column field="country" header="Country" sortable></Column>
+          <Column
+            field="district"
+            body={renderDistrict}
+            header="District"
+            sortable
+          ></Column>
           <Column
             body={(rowData) => moment(rowData.created_at).format("DD/MM/YYYY")}
             field="created_at"

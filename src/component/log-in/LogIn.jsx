@@ -74,6 +74,10 @@ function LogIn() {
       });
     } else {
       authenServices
+        .signUpVersion2(valueSignUp)
+        .then((res) => console.log(res));
+
+      authenServices
         .signUp(valueSignUp)
         .then((res) => {
           if (res.status === 200) {

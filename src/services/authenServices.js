@@ -31,14 +31,24 @@ export const authenServices = {
         return axios({
             headers: {
                 'Authorization': 'Basic ' + Base64.encode(data.username + ":" + data.password)
-            }, method: 'post',
+            },
+            method: 'post',
             data: data,
             url: `${environment_v2}/user/login`,
         })
-            .then(() => {
-                localStorage.setItem('userId', 1);
+            .then((res) => {
+                localStorage.setItem('userId', res.data.user_id);
             });
     },
+    signUpVersion2(data) {
+        return axios({
+            headers: { 'Content-Type': 'application/json' },
+            method: 'post',
+            data: data,
+            url: `${environment_v2}/user/create`,
+        })
+            .then((res) => res);
+    }
 }
 
 export const includeAuthen = () => {

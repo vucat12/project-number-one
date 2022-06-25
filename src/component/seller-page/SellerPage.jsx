@@ -12,10 +12,10 @@ import { useHistory } from "react-router";
 import { getDistricts } from "pc-vn";
 import { LogSearchService } from "../../services/logSearchServices";
 
-const listProvinces = getProvincesVN();
 const productService = SellerService;
 const dataPrice = Price;
 const logSearchService = LogSearchService;
+const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
 
 function SellerPage() {
@@ -105,11 +105,6 @@ function SellerPage() {
   };
 
   const saveLogSearch = (idPrice, area, province, district) => {
-    const provinceResult = listProvinces.find(
-      (el) => el.label.indexOf(province) > -1
-    );
-    console.log(provinceResult);
-
     const data = {
       real_estate_type: 1,
       price_search: idPrice,

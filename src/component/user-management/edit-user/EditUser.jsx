@@ -4,40 +4,47 @@ import "../UserManagement.scss";
 import { Button } from "primereact/button";
 import { useEffect, useState } from "react";
 import { UserServices } from "../../../services/userServices";
+import Dropdown from "react-dropdown";
+import { getProvincesVN } from "../../home-page/model/provinces";
+import { getDistricts } from "pc-vn";
+import "./EditUser.scss";
 
 const userService = UserServices;
+const listProvinces = getProvincesVN();
+const listDistrict = getDistricts();
 
 const EditUser = () => {
   const history = useHistory();
   const [user, setUser] = useState({});
+  const [listOptionsDistrict, setOptionsDistrict] = useState("");
 
   useEffect(() => {
-    if (!history.location.state.user) history.push("/user-management");
-    setUser(history.location.state.user);
+    const user = history.location.state.user;
+
+    if (!user) history.push("/user-management");
+    setUser(user);
+    setOptionsDistrict(
+      listDistrict.filter((el) => el.province_value === user.province_info)
+    );
   }, []);
 
   const handleEditUser = () => {
-    console.log(user);
     userService.editUser({ ...user, user_id: user.id }).then((res) => {
-      console.log(res);
       if (res.status === 200) history.push("/user-management");
     });
+  };
+
+  const handleChangeProvince = (e) => {
+    setOptionsDistrict(
+      listDistrict.filter((el) => el.province_name === e.label)
+    );
+    setUser({ ...user, province_info: e.value, district_info: "" });
   };
 
   return (
     <>
       <div className="title">Edit User</div>
       <div className="form-edit-user">
-        <InputText
-          placeholder="First Name"
-          value={user.first_name}
-          onChange={(e) => setUser({ ...user, first_name: e.target.value })}
-        />
-        <InputText
-          placeholder="Last Name"
-          value={user.last_name}
-          onChange={(e) => setUser({ ...user, last_name: e.target.value })}
-        />
         <InputText
           placeholder="Username"
           value={user.username}
@@ -58,14 +65,34 @@ const EditUser = () => {
           value={user.mobile_number}
           onChange={(e) => setUser({ ...user, mobile_number: e.target.value })}
         />
+        <div style={{ display: "flex" }}>
+          <Dropdown
+            className="Dropdown Dropdown-provinces mr-3"
+            options={listProvinces}
+            onChange={(e) => handleChangeProvince(e)}
+            value={user.province_info}
+            placeholder="Tỉnh"
+          />
+          <Dropdown
+            className="Dropdown"
+            options={listOptionsDistrict}
+            onChange={(e) => setUser({ ...user, district_info: e.value })}
+            value={user.district_info}
+            placeholder="Quận/ Huyện"
+            disabled={user.province_info === "" ? true : false}
+          />
+        </div>
         <InputText placeholder="CMND" value={user.identity_num} disabled />
-        <InputText placeholder="Gender" value={user.gender} disabled />
+        <InputText
+          placeholder="Gender"
+          value={user.gender}
+          onChange={(e) => setUser({ ...user, gender: e.target.value })}
+        />
         <InputText
           placeholder="Address"
           value={user.address}
           onChange={(e) => setUser({ ...user, address: e.target.value })}
         />
-        <InputText placeholder="Country" value={user.country} disabled />
         <div className="mt-2" style={{ textAlign: "right" }}>
           <Button
             onClick={() => history.push("/user-management")}
