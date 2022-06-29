@@ -1,8 +1,9 @@
 import { Menubar } from "primereact/menubar";
 import { useHistory, withRouter } from "react-router-dom";
-import { informationUser } from "../services/authenServices";
+import { includeAuthen, informationUser } from "../services/authenServices";
 import "./TopNav.scss";
 import { Button } from "primereact/button";
+import { toast } from "react-toastify";
 
 function TopNav() {
   const user = informationUser();
@@ -186,7 +187,19 @@ function TopNav() {
         history.push("view-chart-tenant");
         break;
       case 15:
-        history.push("/user-management");
+        if (includeAuthen()) history.push("/user-management");
+        else {
+          history.push("/login");
+          toast("Bạn phải đăng nhập để sử dụng chức năng này", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
         break;
 
       default:
