@@ -10,6 +10,7 @@ import { RecommendPostService } from "../../services/recommendPostServices";
 import { getDistricts } from "pc-vn";
 import moment from "moment";
 import { LogSearchService } from "../../services/logSearchServices";
+import { informationUser } from "../../services/authenServices";
 
 const userService = UserServices;
 const recommendPostService = RecommendPostService;
@@ -23,11 +24,15 @@ const UserManagement = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getAllUsers();
+    getUsers();
   }, []);
 
-  const getAllUsers = () => {
-    userService.getAllUsers().then((res) => {
+  const getUsers = () => {
+    const userRole = informationUser().user.username;
+
+    const isAdmin = userRole === "admin" ? true : false;
+
+    userService.getAllUsers(isAdmin).then((res) => {
       setListUsers(res);
     });
   };
