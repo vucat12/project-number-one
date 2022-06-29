@@ -4,10 +4,7 @@ import { environment_v2 } from './environment';
 export const UserServices = {
   getAllUsers(isAdmin) {
 
-    const userId = localStorage.getItem('user_id');
-
-    console.log("====", userId)
-
+    const userId = localStorage.getItem('userId');
 
     return axios({
       headers: { 'Content-Type': 'application/json' },
