@@ -4,11 +4,22 @@
     text-align: center;
     .Dropdown {
         height: 40px;
-        &-provinces {
+        &-district {
+          .Dropdown-control {
+            width: 200px;
+          }
         }
     }
     .result-found {
         text-align: center;
+    }
+  }
+  .flex {
+    display: flex;
+    place-content: space-around;
+    .card {
+      padding: 20px;
+      display: contents;
     }
   }
 }

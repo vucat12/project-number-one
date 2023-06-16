@@ -10,10 +10,12 @@ import { areaSelected } from "../init-default/area";
 import { getProvincesVN } from "../home-page/model/provinces";
 import { useHistory } from "react-router";
 import { getDistricts } from "pc-vn";
+import { LogSearchService } from "../../services/logSearchServices";
 
-const listProvinces = getProvincesVN();
 const productService = SellerService;
 const dataPrice = Price;
+const logSearchService = LogSearchService;
+const listProvinces = getProvincesVN();
 const listDistrict = getDistricts();
 
 function SellerPage() {
@@ -87,12 +89,35 @@ function SellerPage() {
   };
 
   const confirm = (event) => {
+    saveLogSearch(
+      searchPrice.idPrice,
+      searchArea.idArea,
+      searchProvince,
+      searchDistrict
+    );
+
     getHouse(
       searchPrice.idPrice,
       searchArea.idArea,
       searchProvince,
       searchDistrict
     );
+  };
+
+  const saveLogSearch = (idPrice, area, province, district) => {
+    const data = {
+      real_estate_type: 1,
+      price_search: idPrice,
+      squad_search: area,
+      province_search: listProvinces.find(
+        (el) => el.label.indexOf(province) > -1
+      ).value,
+      district_search: listDistrict.find(
+        (el) => el.label.indexOf(district) > -1
+      ).value,
+    };
+
+    logSearchService.addLogSearch(data);
   };
 
   const setPriceValue = (e) => {
@@ -104,6 +129,7 @@ function SellerPage() {
   };
 
   const viewPostDetail = async (e) => {
+    console.log(e);
     let data = await productService
       .getPostDetail(e.data.linkPage)
       .then((res) => res.data[0]);
